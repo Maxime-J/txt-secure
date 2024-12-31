@@ -1,0 +1,63 @@
+import { memo, useEffect, useMemo, useState } from 'react';
+import { useLoaderData, useLocation } from 'react-router';
+
+import AppDiv from 'components/AppDiv';
+import PasswordInput from 'components/PasswordInput';
+import DecryptedMessage from 'components/view/DecryptedMessage';
+
+import Crypto from 'utils/Crypto';
+import useTextInput from 'utils/useTextInput';
+
+import strings from 'fr-locale';
+import styles from './ViewMessage.module.css';
+
+const PasswordCheck = memo(function PasswordCheck({ onChange }) {
+  return <PasswordInput onChange={onChange} />;
+});
+
+function ViewMessage() {
+  const message = useLoaderData();
+  const { hash } = useLocation();
+  
+  const [notFound, setNotFound] = useState(!message);
+  const [password, onPasswordChange] = useTextInput('');
+  const [content, setContent] = useState();
+  
+  const crypto = useMemo(() => {
+    if (notFound) return;
+    let key = hash.substring(1);
+    key = key.split('&', 1)[0];
+    
+    return Crypto({
+      key58: key,
+      vector64: message.vector,
+      salt64: message.salt,
+    });
+  }, []);
+
+  const render = () => {
+    if (notFound) return <strong className={styles.invalid}>{strings.linkExpiredOrInvalid}</strong>;
+    if (content) return <DecryptedMessage content={content} burn={message.burn} expiratedAt={message.expirated_at * 1000} />;
+    if (message?.with_password) return <PasswordCheck onChange={onPasswordChange} />;
+  };
+
+  useEffect(() => {
+    if (notFound || message.with_password && password === '') return;
+    (async () => {
+      try {
+        const decrypted = await crypto.decrypt(message.encrypted, password);
+        setContent(decrypted);
+      } catch {
+        if (!message.with_password) setNotFound(true);
+      }
+    })();
+  }, [password]);
+  
+  return (
+    <AppDiv>
+      {render()}
+    </AppDiv>
+  );
+}
+
+export default ViewMessage;

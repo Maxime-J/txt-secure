@@ -1,0 +1,24 @@
+.pre {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.infos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 13px;
+  column-gap: 10px;
+}
+
+.link {
+  color: #3f51b5;
+  text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .infos {
+    flex-wrap: wrap;
+  }
+}

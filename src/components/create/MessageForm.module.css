@@ -1,0 +1,64 @@
+.label {
+  display: block;
+  color: black;
+  font-weight: 500;
+}
+
+.textarea {
+  margin-top: 15px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #E0E0E0;
+  resize: none;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  letter-spacing: normal;
+  height: 200px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 13.3333px;
+}
+
+.textarea:focus {
+  outline: none;
+}
+
+.counter {
+  text-align: right;
+}
+
+.settings {
+  display: flex;
+  align-items: center;
+}
+
+.settings > div {
+  flex-basis: 50%;
+}
+
+.settings > div:last-child {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.settings > div:last-child > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.select {
+  width: 200px;
+}
+
+@media (max-width: 500px) {
+  .settings {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  .settings > div, .select {
+    width: 100%;
+  }
+}

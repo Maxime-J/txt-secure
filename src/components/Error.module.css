@@ -1,0 +1,23 @@
+@keyframes appear {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 50px;
+  }
+}
+
+.error {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background-color: rgb(253, 237, 237);
+  height: 50px;
+  overflow: hidden;
+  animation: appear .2s;
+}

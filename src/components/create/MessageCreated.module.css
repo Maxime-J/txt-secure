@@ -1,0 +1,37 @@
+.link {
+  margin: 20px 0;
+  display: flex;
+  width: 100%;
+}
+
+.link > div:first-child {
+  width: 80%;
+  flex-grow: 1;
+}
+
+.link > div:last-child {
+  display: flex;
+}
+
+.link button {
+  background-color: #f1f1f1;
+  border-radius: 0;
+}
+
+.text {
+  color: #666;
+}
+
+.new > button {
+  margin-top: 20px;
+  width: 100%;
+}
+
+@media (max-width: 1020px) {
+  .new > button {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

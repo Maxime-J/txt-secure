@@ -1,0 +1,26 @@
+.home {
+  width: 550px;
+}
+
+.description {
+  color: #666;
+  display: block;
+}
+
+.info {
+  font-weight: 500;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.info svg {
+  margin-right: 10px;
+  color: #7e7e7e;
+}
+
+@media (max-width: 1020px) {
+  .home {
+    width: 100%;
+  }
+}

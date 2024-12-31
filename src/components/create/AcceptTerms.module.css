@@ -1,0 +1,38 @@
+.info, .info > :last-child {
+  align-items: center;
+}
+
+.info > :last-child {
+  display: flex;
+  width: 100%;
+}
+
+.child {
+  margin-left: auto;
+  position: relative;
+}
+
+.link {
+  font-weight: bold;
+}
+
+.close {
+  text-decoration: underline;
+}
+
+.link, .close {
+  cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .info > div:first-child {
+    display: none;
+  }
+  .info > :last-child {
+    flex-direction: column;
+    row-gap: 10px;
+  }
+  .child, .child > button {
+    width: 100%;
+  }
+}

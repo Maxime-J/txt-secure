@@ -1,0 +1,29 @@
+.footer {
+  color: white;
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  width: calc(100% - 100px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a {
+  color: white;
+}
+
+@media (max-width: 1020px) {
+  .footer {
+    flex-direction: column;
+    row-gap: 5px;
+  }
+  .footer > * {
+    width: 100%;
+    text-align: center;
+  }
+  .home {
+    order: -1;
+    margin-bottom: 10px;
+  }
+}
