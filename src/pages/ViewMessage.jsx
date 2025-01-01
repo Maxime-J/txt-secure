@@ -2,8 +2,8 @@ import { memo, useEffect, useMemo, useState } from 'react';
 import { useLoaderData, useLocation } from 'react-router';
 
 import AppDiv from 'components/AppDiv';
-import PasswordInput from 'components/PasswordInput';
 import DecryptedMessage from 'components/view/DecryptedMessage';
+import PasswordInput from 'components/PasswordInput';
 
 import Crypto from 'utils/Crypto';
 import useTextInput from 'utils/useTextInput';
