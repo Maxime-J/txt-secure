@@ -11,9 +11,9 @@ import {
 } from 'utils/api';
 
 const loaders = {
-  background: async () => getBackground(),
-  message: async ({ params }) => getMessage(params.id),
-  content: async ({ request }) => {
+  background: () => getBackground(),
+  message: ({ params }) => getMessage(params.id),
+  content: ({ request }) => {
     const url = new URL(request.url);
     return getContent(url.pathname);
   },
