@@ -1,6 +1,6 @@
 import { version } from 'package.json';
 
-const API_BASE = 'http://192.168.56.10:3001/api/';
+const API_BASE = '/api/';
 
 async function fetchApi(endpoint, options = {}) {
   options.headers = {
