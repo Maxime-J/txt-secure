@@ -25,14 +25,14 @@ export interface MessageData {
   vector: string,
   salt: string,
   with_password: boolean,
-  /** Unix timestamp, (seconds) */
+  /** Unix timestamp in seconds */
   expirated_at: number,
   burn: boolean,
 }
 
 export interface MessageDecrypted {
   content: string,
-  /** Unix timestamp (seconds) */
+  /** Unix timestamp in seconds */
   expiration: number,
   burn: boolean,
 }

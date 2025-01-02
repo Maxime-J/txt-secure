@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { formatDistanceToNow } from 'utils/date';
 
 interface TimerProps {
-  /** Unix timestamp, (milliseconds) */
+  /** Unix timestamp in milliseconds */
   timestamp: number,
   onElapsed: () => void,
 }
