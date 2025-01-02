@@ -56,7 +56,7 @@ function MessageForm({ onCreated }: MessageFormProps) {
       encrypted,
       vector: cryptoParams.vector64,
       salt: cryptoParams.salt64,
-      with_password: !!(passwordEnabled && passwordRef.current!.value.length),
+      with_password: passwordEnabled && passwordRef.current!.value !== '',
       validity: periodRef.current!.value,
       burn: burnRef.current!.checked,
     });
