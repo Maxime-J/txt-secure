@@ -41,7 +41,7 @@ function ViewMessage() {
   const render = () => {
     if (notFound) return <strong className={styles.invalid}>{strings.linkExpiredOrInvalid}</strong>;
     if (content) return <DecryptedMessage content={content} expiration={message.expirated_at} burn={message.burn} />;
-    if (message?.with_password) return <PasswordCheck onChange={onPasswordChange} />;
+    if (message.with_password) return <PasswordCheck onChange={onPasswordChange} />;
   };
 
   useEffect(() => {
