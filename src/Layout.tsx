@@ -15,7 +15,7 @@ function Layout() {
   const location = useLocation();
 
   useEffect(() => {
-    const root = document.getElementById('root');
+    const root = document.getElementById('root')!;
     if (root.scrollTop !== 0) root.scrollTo(0, 0);
   }, [location]);
 

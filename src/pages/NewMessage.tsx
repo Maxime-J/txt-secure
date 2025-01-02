@@ -3,17 +3,15 @@ import { useState } from 'react';
 import MessageCreated from 'components/create/MessageCreated';
 import MessageForm from 'components/create/MessageForm';
 
-function NewMessage() {
-  const [message, setMessage] = useState({
-    link: undefined,
-    expiration: undefined,
-    burn: false,
-  });
+import { NewMessageState } from 'types';
 
-  return (message.link)
+function NewMessage() {
+  const [message, setMessage] = useState<NewMessageState | null>(null);
+
+  return (message)
     ? <MessageCreated
         message={message}
-        newMessage={() => setMessage({})}
+        newMessage={() => setMessage(null)}
       />
     : <MessageForm onCreated={setMessage} />;
 }

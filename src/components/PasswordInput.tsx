@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEventHandler, Ref, useState } from 'react';
 
 import { IconButton, Input, InputAdornment } from '@mui/material';
 
@@ -7,7 +7,12 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 import strings from 'fr-locale';
 
-function PasswordInput({ inputRef, ...props }) {
+interface PasswordInputProps {
+  inputRef?: Ref<HTMLInputElement>,
+  onChange?: ChangeEventHandler<HTMLInputElement>,
+}
+
+function PasswordInput({ inputRef, onChange }: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   const changeVisibility = () => {
@@ -17,10 +22,9 @@ function PasswordInput({ inputRef, ...props }) {
   return (
     <form onSubmit={(e) => {e.preventDefault()}}>
       <Input
-        inputRef={inputRef}
+        {...{ inputRef, onChange }}
         placeholder={strings.password}
         autoFocus
-        {...props}
         type={showPassword ? 'text' : 'password'}
         inputProps={{ autoComplete: 'off' }}
         endAdornment={(

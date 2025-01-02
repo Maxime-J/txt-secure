@@ -1,10 +1,11 @@
 import globals from 'globals';
 import js from '@eslint/js';
 import react from 'eslint-plugin-react';
+import tseslint from 'typescript-eslint';
 
 export default [
   {
-    files: ['src/**/*.{js,jsx}'],
+    files: ['src/**/*.{ts,tsx}'],
     settings: {
       react: {
         version: 'detect',
@@ -25,10 +26,15 @@ export default [
     },
     rules: {
       ...js.configs.recommended.rules,
-      ...react.configs.recommended.rules,
+      ...react.configs.flat.recommended.rules,
       'react/react-in-jsx-scope': 'off',
-      'react/jsx-uses-react': 'off',
       'react/prop-types': 'off',
+    },
+  },
+  ...tseslint.configs.recommended,
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ];

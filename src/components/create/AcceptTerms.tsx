@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { useFetcher } from 'react-router';
 
 import {
@@ -12,15 +12,15 @@ import {
 import strings from 'fr-locale';
 import styles from './AcceptTerms.module.css';
 
-function AcceptTerms({ children }) {
+function AcceptTerms({ children }: PropsWithChildren) {
   const fetcher = useFetcher();
   const [termsOpened, setTermsOpened] = useState(false);
-  
+
   const openTerms = () => {
     if (!fetcher.data) fetcher.load('/conditions');
     setTermsOpened(true);
   };
-  
+
   const closeTerms = () => {
     setTermsOpened(false);
   };

@@ -1,15 +1,21 @@
 import { version } from 'package.json';
+import {
+  BackgroundInfos,
+  MessageCreationRequest,
+  MessageCreationResponse,
+  MessageData,
+} from 'types';
 
 const API_BASE = '/api/';
 
-async function fetchApi(endpoint, options = {}) {
+async function fetchApi(endpoint: string, options: RequestInit = {}) {
   options.headers = {
     ...options.headers,
     'X-APP': version,
   };
 
   const response = await fetch(`${API_BASE}${endpoint}`, options);
-  const contentType = response.headers.get('Content-Type');
+  const contentType = response.headers.get('Content-Type')!;
 
   let result;
 
@@ -22,19 +28,19 @@ async function fetchApi(endpoint, options = {}) {
   return result;
 };
 
-export async function getBackground() {
+export function getBackground(): Promise<BackgroundInfos> {
   return fetchApi('background');
 };
 
-export async function getContent(pathname) {
+export function getContent(pathname: string): Promise<string> {
   return fetchApi(`content${pathname}`);
 }
 
-export async function getMessage(id) {
+export function getMessage(id: string): Promise<MessageData> {
   return fetchApi(`message/${id}`);
 };
 
-export async function createMessage(data){
+export function createMessage(data: MessageCreationRequest): Promise<MessageCreationResponse> {
   return fetchApi('message', {
     method: 'POST',
     headers: {

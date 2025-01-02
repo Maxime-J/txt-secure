@@ -21,6 +21,8 @@ import useTextInput from 'utils/useTextInput';
 import strings from 'fr-locale';
 import styles from './MessageForm.module.css';
 
+import { NewMessageState } from 'types';
+
 const VALIDITY_PERIODS = [
   '5m',  //{strings.form.periods.5m}
   '10m', //{strings.form.periods.10m}
@@ -29,28 +31,34 @@ const VALIDITY_PERIODS = [
   '1w',  //{strings.form.periods.1w}
 ];
 
-function MessageForm({ onCreated }) {
+interface MessageFormProps {
+  onCreated: (data: NewMessageState) => void,
+}
+
+interface FormState {
+  sending?: boolean,
+  error?: string,
+}
+
+function MessageForm({ onCreated }: MessageFormProps) {
   const [content, onContentChange] = useTextInput('');
   const [passwordEnabled, setPasswordEnabled] = useState(false);
-  const [formState, setFormState] = useState({
-    sending: false,
-    error: '',
-  });
-  const passwordRef = useRef();
-  const burnRef = useRef();
-  const periodRef = useRef();
+  const [formState, setFormState] = useState<FormState>({});
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const burnRef = useRef<HTMLInputElement>(null);
+  const periodRef = useRef<HTMLInputElement>(null);
 
   const create = async () => {
-    const { encrypt, params: cryptoParams } = new Crypto();
-    const encrypted = await encrypt(content, passwordEnabled ? passwordRef.current.value : '');
+    const { encrypt, params: cryptoParams } = Crypto();
+    const encrypted = await encrypt(content, passwordEnabled ? passwordRef.current!.value : '');
 
     const { error, id, expirated_at } = await createMessage({
       encrypted,
       vector: cryptoParams.vector64,
       salt: cryptoParams.salt64,
-      with_password: !!(passwordEnabled && passwordRef.current.value.length),
-      validity: periodRef.current.value,
-      burn: burnRef.current.checked,
+      with_password: !!(passwordEnabled && passwordRef.current!.value.length),
+      validity: periodRef.current!.value,
+      burn: burnRef.current!.checked,
     });
 
     if (error) {
@@ -62,9 +70,8 @@ function MessageForm({ onCreated }) {
 
     onCreated({
       link,
-      period: periodRef.current.value,
-      burn: burnRef.current.checked,
       expiration: formatDate(expirated_at * 1000),
+      burn: burnRef.current!.checked,
     });
   };
 
@@ -80,7 +87,7 @@ function MessageForm({ onCreated }) {
         onChange={onContentChange}
         autoFocus
         spellCheck="false"
-        maxLength="1000"
+        maxLength={1000}
         className={styles.textarea}
       />
       <div className={styles.counter}><span>{`${content.length}/1000`}</span></div>
@@ -100,7 +107,7 @@ function MessageForm({ onCreated }) {
                 key={validityPeriod}
                 value={validityPeriod}
               >
-                {strings.form.periods[validityPeriod]}
+                {strings.form.periods[validityPeriod as keyof typeof strings.form.periods]}
               </MenuItem>
             ))}
           </Select>
@@ -132,7 +139,7 @@ function MessageForm({ onCreated }) {
        * Errors:
        * {strings.form.errors.ip}
        */
-      <Alert severity="error">{strings.form.errors[formState.error]}</Alert>
+      <Alert severity="error">{strings.form.errors[formState.error as keyof typeof strings.form.errors]}</Alert>
     )}
     <AcceptTerms>
       <Button

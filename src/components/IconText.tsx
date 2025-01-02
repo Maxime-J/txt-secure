@@ -1,6 +1,11 @@
+import { PropsWithChildren, ReactNode } from 'react';
 import styles from './IconText.module.css';
 
-function IconText({ icon, children }){
+interface IconTextProps {
+  icon: ReactNode,
+}
+
+function IconText({ icon, children }: PropsWithChildren<IconTextProps>){
   return (
     <div className={styles.div}>
       {icon}

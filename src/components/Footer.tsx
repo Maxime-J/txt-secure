@@ -7,10 +7,12 @@ import useHandles from 'utils/useHandles';
 import strings from 'fr-locale';
 import styles from './Footer.module.css';
 
+import { BackgroundInfos } from 'types';
+
 function Footer() {
-  const { location, author, link } = useLoaderData();
+  const { location, author, link } = useLoaderData<BackgroundInfos>();
   const { showHome } = useHandles();
-  
+
   return (
     <div className={styles.footer}>
       <a

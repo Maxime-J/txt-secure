@@ -1,18 +1,14 @@
-import { createBrowserRouter, RouterProvider } from 'react-router';
+import { createBrowserRouter, LoaderFunction, RouterProvider } from 'react-router';
 
 import Layout from './Layout';
 import { Home, NewMessage, ViewMessage, FromServer } from './pages';
 import Error from 'components/Error';
 
-import {
-  getBackground,
-  getMessage,
-  getContent,
-} from 'utils/api';
+import { getBackground, getMessage, getContent } from 'utils/api';
 
-const loaders = {
+const loaders: Record<string, LoaderFunction> = {
   background: () => getBackground(),
-  message: ({ params }) => getMessage(params.id),
+  message: ({ params }) => getMessage(params.id!),
   content: ({ request }) => {
     const url = new URL(request.url);
     return getContent(url.pathname);

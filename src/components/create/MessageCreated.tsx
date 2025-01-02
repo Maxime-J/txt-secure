@@ -10,7 +10,14 @@ import IconText from 'components/IconText';
 import strings from 'fr-locale';
 import styles from './MessageCreated.module.css';
 
-function MessageCreated({ message, newMessage }) {
+import { NewMessageState } from 'types';
+
+interface MessageCreatedProps {
+  message: NewMessageState,
+  newMessage: () => void,
+};
+
+function MessageCreated({ message, newMessage }: MessageCreatedProps) {
   const [copyDone, setCopyDone] = useState(false);
 
   const copyLink = async () => {
@@ -18,11 +25,11 @@ function MessageCreated({ message, newMessage }) {
     setCopyDone(true);
   };
 
-  const selectLink = ({ target }) => {
-    const selection = window.getSelection();
-    selection.setBaseAndExtent(target, 0, target, 1);
+  const selectLink = ({ target }: React.MouseEvent) => {
+    const selection = window.getSelection()!;
+    selection.setBaseAndExtent((target as Node), 0, (target as Node), 1);
   };
-  
+
   useEffect(() => {
     if (copyDone) setTimeout(() => { setCopyDone(false) }, 1500);
   }, [copyDone]);
@@ -61,7 +68,7 @@ function MessageCreated({ message, newMessage }) {
           </Tooltip>
         </div>
       </div>
-      
+
       <div className={styles.text}>
         <IconText icon={<AccessTimeIcon fontSize="inherit"/>}>
           {`${strings.created.validUntil} ${message.expiration}`}

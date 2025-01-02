@@ -7,13 +7,15 @@ import LockIcon from '@mui/icons-material/Lock';
 import strings from 'fr-locale';
 import styles from './DecryptedMessage.module.css';
 
-function DecryptedMessage({ content, burn, expiratedAt }) {
+import { MessageDecrypted } from 'types';
+
+function DecryptedMessage({ content, expiration, burn }: MessageDecrypted) {
   return (
     <>
     <div>
       <pre className={styles.pre}>{content}</pre>
     </div>
-    
+
     <div className={styles.infos}>
       <IconText icon={<LockIcon fontSize="inherit" />}>
         {`${strings.decrypted.info} `}
@@ -31,7 +33,7 @@ function DecryptedMessage({ content, burn, expiratedAt }) {
           ? `${strings.decrypted.deleted} `
           : `${strings.decrypted.deletedIn} `
         }
-        <Timer timestamp={expiratedAt} onElapsed={() => { window.location.reload() }} />
+        <Timer timestamp={expiration * 1000} onElapsed={() => { window.location.reload() }} />
       </IconText>
     </div>
     </>

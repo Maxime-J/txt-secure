@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { formatDistanceToNow } from 'utils/date';
 
-function Timer({ timestamp, onElapsed }) {
+interface TimerProps {
+  /** Unix timestamp, (milliseconds) */
+  timestamp: number,
+  onElapsed: () => void,
+}
+
+function Timer({ timestamp, onElapsed }: TimerProps) {
   const [elapsed, setElapsed] = useState(false);
   const [distance, setDistance] = useState(formatDistanceToNow(timestamp));
 
