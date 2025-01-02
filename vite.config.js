@@ -8,8 +8,8 @@ export default defineConfig({
     alias: {
       components: path.resolve(__dirname, 'src/components/'),
       'fr-locale': path.resolve(__dirname, 'locale/fr.json'),
-      utils: path.resolve(__dirname, 'src/utils/'),
       'package.json': path.resolve(__dirname, 'package.json'),
+      utils: path.resolve(__dirname, 'src/utils/'),
     },
   },
   css: {

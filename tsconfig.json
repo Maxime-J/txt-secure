@@ -6,11 +6,13 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "paths": {
-      "types": ["./src/types.ts"],
+      /* As in Vite config */
       "components/*": ["./src/components/*"],
       "fr-locale": ["./locale/fr.json"],
+      "package.json": ["./package.json"],
       "utils/*": ["./src/utils/*"],
-      "package.json": ["./package.json"]
+      /* TypeScript specific */
+      "types": ["./src/types.ts"],
     },
 
     /* Bundler mode */
