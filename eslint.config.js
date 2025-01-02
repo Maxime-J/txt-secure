@@ -1,6 +1,7 @@
 import globals from 'globals';
 import js from '@eslint/js';
 import react from 'eslint-plugin-react';
+import stylisticJs from '@stylistic/eslint-plugin-js';
 import tseslint from 'typescript-eslint';
 
 export default [
@@ -12,6 +13,7 @@ export default [
       },
     },
     plugins: {
+      '@stylistic/js': stylisticJs,
       react,
     },
     languageOptions: {
@@ -27,6 +29,7 @@ export default [
     rules: {
       ...js.configs.recommended.rules,
       ...react.configs.flat.recommended.rules,
+      '@stylistic/js/no-extra-semi': 'error',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
     },

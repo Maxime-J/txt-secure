@@ -7,7 +7,7 @@ import { BackgroundInfos } from 'types';
 
 interface BackgroundCSS extends CSSProperties {
   '--background': string,
-};
+}
 
 function Background() {
   const [loaded, setLoaded] = useState(false);

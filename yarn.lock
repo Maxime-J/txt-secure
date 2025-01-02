@@ -1094,6 +1094,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stylistic/eslint-plugin-js@npm:^2.12.1":
+  version: 2.12.1
+  resolution: "@stylistic/eslint-plugin-js@npm:2.12.1"
+  dependencies:
+    eslint-visitor-keys: "npm:^4.2.0"
+    espree: "npm:^10.3.0"
+  peerDependencies:
+    eslint: ">=8.40.0"
+  checksum: 10c0/f0941e97098b85414ddf372c37e8b034c1e742956a9bad98ae936750b99bf0832f53da84a6926ac20bbe4e2b34573d394a5941cc98792f451b55936d413a954d
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.20.5":
   version: 7.20.5
   resolution: "@types/babel__core@npm:7.20.5"
@@ -5224,6 +5236,7 @@ __metadata:
     "@mui/icons-material": "npm:^6.3.0"
     "@mui/material": "npm:^6.3.0"
     "@scure/base": "npm:^1.2.1"
+    "@stylistic/eslint-plugin-js": "npm:^2.12.1"
     "@types/react": "npm:^19.0.2"
     "@types/react-dom": "npm:^19.0.2"
     "@vitejs/plugin-react": "npm:^4.3.4"

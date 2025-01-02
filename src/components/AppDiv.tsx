@@ -7,6 +7,6 @@ function AppDiv({ children }: PropsWithChildren) {
       {children}
     </div>
   );
-};
+}
 
 export default AppDiv;

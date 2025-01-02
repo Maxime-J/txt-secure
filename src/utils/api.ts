@@ -26,11 +26,11 @@ async function fetchApi(endpoint: string, options: RequestInit = {}) {
   }
 
   return result;
-};
+}
 
 export function getBackground(): Promise<BackgroundInfos> {
   return fetchApi('background');
-};
+}
 
 export function getContent(pathname: string): Promise<string> {
   return fetchApi(`content${pathname}`);
@@ -38,7 +38,7 @@ export function getContent(pathname: string): Promise<string> {
 
 export function getMessage(id: string): Promise<MessageData> {
   return fetchApi(`message/${id}`);
-};
+}
 
 export function createMessage(data: MessageCreationRequest): Promise<MessageCreationResponse> {
   return fetchApi('message', {
@@ -48,4 +48,4 @@ export function createMessage(data: MessageCreationRequest): Promise<MessageCrea
     },
     body: JSON.stringify(data),
   });
-};
+}

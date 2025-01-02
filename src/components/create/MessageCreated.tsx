@@ -15,7 +15,7 @@ import { NewMessageState } from 'types';
 interface MessageCreatedProps {
   message: NewMessageState,
   newMessage: () => void,
-};
+}
 
 function MessageCreated({ message, newMessage }: MessageCreatedProps) {
   const [copyDone, setCopyDone] = useState(false);
