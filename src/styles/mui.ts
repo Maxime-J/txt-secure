@@ -25,7 +25,7 @@ const muiTheme = createTheme({
           borderRadius: 5,
           borderWidth: 1,
           borderStyle: 'solid',
-          borderColor: '#E0E0E0',
+          borderColor: '#e0e0e0',
           padding: 10,
         },
       },
@@ -77,7 +77,7 @@ const muiTheme = createTheme({
         },
         track: ({ theme }) => ({
           borderRadius: 26 / 2,
-          backgroundColor: '#E9E9EA',
+          backgroundColor: '#e9e9ea',
           opacity: 1,
           transition: theme.transitions.create(['background-color'], {
             duration: 500,
