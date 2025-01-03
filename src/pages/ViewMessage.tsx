@@ -56,6 +56,20 @@ function ViewMessage() {
     })();
   }, [password]);
 
+  useEffect(() => {
+    if (notFound) return;
+
+    const expiration = message.expirated_at * 1000;
+
+    const intervalId = setInterval(() => {
+      if (Date.now() >= expiration) window.location.reload();
+    }, 10000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [notFound]);
+
   return (
     <AppDiv>
       {render()}

@@ -33,7 +33,7 @@ function DecryptedMessage({ content, expiration, burn }: MessageDecrypted) {
           ? `${strings.decrypted.deleted} `
           : `${strings.decrypted.deletedIn} `
         }
-        <Timer timestamp={expiration * 1000} onElapsed={() => { window.location.reload() }} />
+        <Timer timestamp={expiration * 1000} />
       </IconText>
     </div>
     </>

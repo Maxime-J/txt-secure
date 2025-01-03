@@ -4,20 +4,15 @@ import { formatDistanceToNow } from 'utils/date';
 interface TimerProps {
   /** Unix timestamp in milliseconds */
   timestamp: number,
-  onElapsed: () => void,
 }
 
-function Timer({ timestamp, onElapsed }: TimerProps) {
-  const [elapsed, setElapsed] = useState(false);
+function Timer({ timestamp }: TimerProps) {
   const [distance, setDistance] = useState(formatDistanceToNow(timestamp));
 
   useEffect(() => {
-    if (!elapsed && Date.now() >= timestamp) {
-      onElapsed();
-      setElapsed(true);
-    }
-
     const intervalId = setInterval(() => {
+      if (Date.now() >= timestamp) return;
+
       const newDistance = formatDistanceToNow(timestamp);
       if (newDistance !== distance) setDistance(newDistance);
     }, 30000);
@@ -25,7 +20,7 @@ function Timer({ timestamp, onElapsed }: TimerProps) {
     return () => {
       clearInterval(intervalId);
     };
-  }, [distance, elapsed]);
+  }, [distance]);
 
   return <span>{distance}</span>;
 }
