@@ -22,6 +22,6 @@ export default {
   output: 'locale/$LOCALE.json',
   sort: true,
   lexers: {
-    jsx: [StringsLexer],
+    tsx: [StringsLexer],
   },
 };

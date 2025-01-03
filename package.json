@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "update-strings": "i18next -c parser.config.js 'src/**/*.jsx'",
+    "update-strings": "i18next -c parser.config.js 'src/**/*.tsx'",
     "lint": "eslint src"
   },
   "dependencies": {
