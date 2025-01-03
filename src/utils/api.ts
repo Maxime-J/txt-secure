@@ -15,6 +15,8 @@ async function fetchApi(endpoint: string, options: RequestInit = {}) {
   };
 
   const response = await fetch(`${API_BASE}${endpoint}`, options);
+  if (!response.ok) return;
+
   const contentType = response.headers.get('Content-Type')!;
 
   let result;
