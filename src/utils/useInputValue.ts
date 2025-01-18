@@ -2,7 +2,7 @@ import { ChangeEventHandler, useState, useCallback } from 'react';
 
 type ChangeHandler = ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
-function useTextInput(initialValue: string): [state: string, changeHandler: ChangeHandler] {
+function useInputValue(initialValue: string): [state: string, changeHandler: ChangeHandler] {
   const [state, setState] = useState<string>(initialValue);
 
   let timeoutId: number;
@@ -18,4 +18,4 @@ function useTextInput(initialValue: string): [state: string, changeHandler: Chan
   return [state, changeHandler];
 }
 
-export default useTextInput;
+export default useInputValue;

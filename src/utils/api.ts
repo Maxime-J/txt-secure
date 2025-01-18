@@ -1,9 +1,9 @@
 import { version } from 'package.json';
 import {
   BackgroundInfos,
-  MessageCreationRequest,
-  MessageCreationResponse,
-  MessageData,
+  ShareCreationRequest,
+  ShareCreationResponse,
+  ShareData,
 } from 'types';
 
 const API_BASE = '/api/';
@@ -38,12 +38,12 @@ export function getContent(pathname: string): Promise<string> {
   return fetchApi(`content${pathname}`);
 }
 
-export function getMessage(id: string): Promise<MessageData> {
-  return fetchApi(`message/${id}`);
+export function getShare(id: string): Promise<ShareData> {
+  return fetchApi(`share/${id}`);
 }
 
-export function createMessage(data: MessageCreationRequest): Promise<MessageCreationResponse> {
-  return fetchApi('message', {
+export function createShare(data: ShareCreationRequest): Promise<ShareCreationResponse> {
+  return fetchApi('share', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

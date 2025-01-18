@@ -5,23 +5,23 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ContentCopyIcon from '@mui/icons-material/ContentCopyOutlined';
 
 import AppDiv from 'components/AppDiv';
-import IconText from 'components/IconText';
+import IconSpan from 'components/IconSpan';
 
 import strings from 'fr-locale';
-import styles from './MessageCreated.module.css';
+import styles from './CreatedShare.module.css';
 
-import { NewMessageState } from 'types';
+import { NewShareState } from 'types';
 
-interface MessageCreatedProps {
-  message: NewMessageState,
-  newMessage: () => void,
+interface CreatedShareProps {
+  share: NewShareState,
+  newShare: () => void,
 }
 
-function MessageCreated({ message, newMessage }: MessageCreatedProps) {
+function CreatedShare({ share, newShare }: CreatedShareProps) {
   const [copyDone, setCopyDone] = useState(false);
 
   const copyLink = async () => {
-    await navigator.clipboard.writeText(message.link);
+    await navigator.clipboard.writeText(share.link);
     setCopyDone(true);
   };
 
@@ -43,7 +43,7 @@ function MessageCreated({ message, newMessage }: MessageCreatedProps) {
 
       <div className={styles.link}>
         <div>
-          <pre onClick={selectLink}>{message.link}</pre>
+          <pre onClick={selectLink}>{share.link}</pre>
         </div>
         <div>
           <Tooltip
@@ -70,19 +70,19 @@ function MessageCreated({ message, newMessage }: MessageCreatedProps) {
       </div>
 
       <div className={styles.text}>
-        <IconText icon={<AccessTimeIcon fontSize="inherit"/>}>
-          {`${strings.created.validUntil} ${message.expiration}`}
-          {message.burn && ` (${strings.created.burnInfo})`}
-        </IconText>
+        <IconSpan icon={<AccessTimeIcon fontSize="inherit"/>}>
+          {`${strings.created.validUntil} ${share.expiration}`}
+          {share.burn && ` (${strings.created.burnInfo})`}
+        </IconSpan>
       </div>
     </AppDiv>
     <div className={styles.new}>
-      <Fab variant="extended" onClick={newMessage}>
-        {strings.created.newMessage}
+      <Fab variant="extended" onClick={newShare}>
+        {strings.created.newShare}
       </Fab>
     </div>
     </>
   );
 }
 
-export default MessageCreated;
+export default CreatedShare;

@@ -1,15 +1,20 @@
-import IconText from 'components/IconText';
+import IconSpan from 'components/IconSpan';
 import Timer from 'components/view/Timer';
 
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LockIcon from '@mui/icons-material/Lock';
 
 import strings from 'fr-locale';
-import styles from './DecryptedMessage.module.css';
+import styles from './DecryptedShare.module.css';
 
-import { MessageDecrypted } from 'types';
+interface DecryptedShareProps {
+  content: string,
+  /** Unix timestamp in seconds */
+  expiration: number,
+  burn: boolean,
+}
 
-function DecryptedMessage({ content, expiration, burn }: MessageDecrypted) {
+function DecryptedShare({ content, expiration, burn }: DecryptedShareProps) {
   return (
     <>
     <div>
@@ -17,7 +22,7 @@ function DecryptedMessage({ content, expiration, burn }: MessageDecrypted) {
     </div>
 
     <div className={styles.infos}>
-      <IconText icon={<LockIcon fontSize="inherit" />}>
+      <IconSpan icon={<LockIcon fontSize="inherit" />}>
         {`${strings.decrypted.info} `}
         <a
           href="/"
@@ -27,17 +32,17 @@ function DecryptedMessage({ content, expiration, burn }: MessageDecrypted) {
         >
           {strings.hostname}
         </a>
-      </IconText>
-      <IconText icon={<AccessTimeIcon fontSize="inherit" />}>
+      </IconSpan>
+      <IconSpan icon={<AccessTimeIcon fontSize="inherit" />}>
         { burn
           ? `${strings.decrypted.deleted} `
           : `${strings.decrypted.deletedIn} `
         }
         <Timer timestamp={expiration * 1000} />
-      </IconText>
+      </IconSpan>
     </div>
     </>
   );
 }
 
-export default DecryptedMessage;
+export default DecryptedShare;

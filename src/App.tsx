@@ -1,14 +1,14 @@
 import { createBrowserRouter, LoaderFunction, RouterProvider } from 'react-router';
 
 import Layout from './Layout';
-import { Home, NewMessage, ViewMessage, FromServer } from './pages';
+import { FromServer, Home, NewShare, ViewShare } from './pages';
 import Error from 'components/Error';
 
-import { getBackground, getMessage, getContent } from 'utils/api';
+import { getBackground, getContent, getShare } from 'utils/api';
 
 const loaders: Record<string, LoaderFunction> = {
   background: () => getBackground(),
-  message: ({ params }) => getMessage(params.id!),
+  share: ({ params }) => getShare(params.id!),
   content: ({ request }) => {
     const url = new URL(request.url);
     return getContent(url.pathname);
@@ -24,10 +24,10 @@ const router = createBrowserRouter([
     HydrateFallback: () => null,
     children: [
       { path: '/', element: <Home /> },
-      { path: '/nouveau', element: <NewMessage /> },
+      { path: '/nouveau-lien', element: <NewShare /> },
       { path: '/a-propos', handle: { showHome: true }, ...serverRoute },
       { path: '/conditions', handle: { showHome: true }, ...serverRoute },
-      { path: '/:id', loader: loaders.message, element: <ViewMessage /> },
+      { path: '/:id', loader: loaders.share, element: <ViewShare /> },
     ],
     errorElement: <Error />,
   },

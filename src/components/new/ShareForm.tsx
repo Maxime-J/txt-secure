@@ -9,19 +9,19 @@ import {
   Switch,
 } from '@mui/material';
 
-import AcceptTerms from 'components/create/AcceptTerms';
+import AcceptTerms from 'components/new/AcceptTerms';
 import AppDiv from 'components/AppDiv';
 import PasswordInput from 'components/PasswordInput';
 
+import { createShare } from 'utils/api';
 import Crypto from 'utils/Crypto';
-import { createMessage } from 'utils/api';
 import { formatDate } from 'utils/date';
-import useTextInput from 'utils/useTextInput';
+import useInputValue from 'utils/useInputValue';
 
 import strings from 'fr-locale';
-import styles from './MessageForm.module.css';
+import styles from './ShareForm.module.css';
 
-import { NewMessageState } from 'types';
+import { NewShareState } from 'types';
 
 const VALIDITY_PERIODS = [
   '5m',  //{strings.form.periods.5m}
@@ -31,8 +31,8 @@ const VALIDITY_PERIODS = [
   '1w',  //{strings.form.periods.1w}
 ];
 
-interface MessageFormProps {
-  onCreated: (data: NewMessageState) => void,
+interface ShareFormProps {
+  onCreated: (data: NewShareState) => void,
 }
 
 interface FormState {
@@ -40,8 +40,8 @@ interface FormState {
   error?: string,
 }
 
-function MessageForm({ onCreated }: MessageFormProps) {
-  const [content, onContentChange] = useTextInput('');
+function ShareForm({ onCreated }: ShareFormProps) {
+  const [content, onContentChange] = useInputValue('');
   const [passwordEnabled, setPasswordEnabled] = useState(false);
   const [formState, setFormState] = useState<FormState>({});
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -52,7 +52,7 @@ function MessageForm({ onCreated }: MessageFormProps) {
     const { encrypt, params: cryptoParams } = Crypto();
     const encrypted = await encrypt(content, passwordEnabled ? passwordRef.current!.value : '');
 
-    const { error, id, expirated_at } = await createMessage({
+    const { error, id, expirated_at } = await createShare({
       encrypted,
       vector: cryptoParams.vector64,
       salt: cryptoParams.salt64,
@@ -135,9 +135,9 @@ function MessageForm({ onCreated }: MessageFormProps) {
       </AppDiv>
     )}
     {formState.error && (
-      /**
-       * Errors:
-       * {strings.form.errors.ip}
+      /*
+        Errors:
+        {strings.form.errors.ip}
        */
       <Alert severity="error">{strings.form.errors[formState.error as keyof typeof strings.form.errors]}</Alert>
     )}
@@ -169,4 +169,4 @@ function MessageForm({ onCreated }: MessageFormProps) {
   );
 }
 
-export default MessageForm;
+export default ShareForm;

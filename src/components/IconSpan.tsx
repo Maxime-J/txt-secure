@@ -1,11 +1,11 @@
 import { PropsWithChildren, ReactNode } from 'react';
-import styles from './IconText.module.css';
+import styles from './IconSpan.module.css';
 
-interface IconTextProps {
+interface IconSpanProps {
   icon: ReactNode,
 }
 
-function IconText({ icon, children }: PropsWithChildren<IconTextProps>){
+function IconSpan({ icon, children }: PropsWithChildren<IconSpanProps>){
   return (
     <div className={styles.div}>
       {icon}
@@ -14,4 +14,4 @@ function IconText({ icon, children }: PropsWithChildren<IconTextProps>){
   );
 }
 
-export default IconText;
+export default IconSpan;

@@ -5,7 +5,7 @@
     "burnInfo": "accessible une seule fois",
     "copy": "Copier",
     "copySuccess": "Lien copié",
-    "newMessage": "Nouveau message",
+    "newShare": "Nouveau lien",
     "title": "Lien à envoyer :",
     "validUntil": "Valable jusqu'au"
   },
@@ -38,8 +38,8 @@
   },
   "home": {
     "about": "Le contenu est chiffré sur votre appareil et stocké sans la clé.",
-    "button": "Écrire un message",
-    "description": "txt-secure.fr permet de partager une information de façon sécurisée. Votre message sera stocké pour une durée limitée et accessible à partir d'un lien à envoyer au destinataire."
+    "button": "Partager un contenu",
+    "description": "txt-secure.fr permet de partager une information de façon sécurisée. Votre contenu sera stocké chiffré pour une durée limitée et accessible à partir d'un lien à envoyer au destinataire."
   },
   "hostname": "txt-secure.fr",
   "linkExpiredOrInvalid": "Lien expiré ou invalide",

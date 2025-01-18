@@ -19,7 +19,7 @@ function Home() {
           <LockIcon />
           <p>{strings.home.about}</p>
         </div>
-        <Link to="/nouveau">
+        <Link to="/nouveau-lien">
           <Fab variant="extended" sx={{ width: '100%', marginTop: '20px' }}>
             {strings.home.button}
           </Fab>

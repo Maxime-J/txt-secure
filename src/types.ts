@@ -5,7 +5,13 @@ export interface BackgroundInfos {
   link: string,
 }
 
-export interface MessageCreationRequest {
+export interface NewShareState {
+  link: string,
+  expiration: string,
+  burn: boolean,
+}
+
+export interface ShareCreationRequest {
   encrypted: string,
   vector: string,
   salt: string,
@@ -14,31 +20,18 @@ export interface MessageCreationRequest {
   burn: boolean,
 }
 
-export interface MessageCreationResponse {
+export interface ShareCreationResponse {
   id: string,
   expirated_at: number,
   error?: string,
 }
 
-export interface MessageData {
+export interface ShareData {
   encrypted: string,
   vector: string,
   salt: string,
   with_password: boolean,
   /** Unix timestamp in seconds */
   expirated_at: number,
-  burn: boolean,
-}
-
-export interface MessageDecrypted {
-  content: string,
-  /** Unix timestamp in seconds */
-  expiration: number,
-  burn: boolean,
-}
-
-export interface NewMessageState {
-  link: string,
-  expiration: string,
   burn: boolean,
 }
