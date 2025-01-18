@@ -1,10 +1,10 @@
 import { useMatches } from 'react-router';
 
-interface Test {
+interface ConfigHandles {
   showHome?: boolean,
 }
 
-function useHandles(): Test {
+function useHandles(): ConfigHandles {
   const matches = useMatches();
   return matches.reduce((acc, val) => ({ ...acc, ...(val.handle as object) }), {});
 }
