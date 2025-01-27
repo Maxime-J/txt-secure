@@ -19,7 +19,7 @@
 }
 
 .link {
-  color: #3f51b5;
+  color: inherit;
   text-decoration: underline;
 }
 

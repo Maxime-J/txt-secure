@@ -27,7 +27,6 @@ function DecryptedShare({ content, expiration, burn }: DecryptedShareProps) {
         <a
           href="/"
           rel="noreferrer"
-          target="_blank"
           className={styles.link}
         >
           {strings.hostname}
