@@ -24,6 +24,12 @@
   cursor: pointer;
 }
 
+@media (max-width: 1020px) {
+  :global(.MuiAlert-root).info {
+    border-radius: 0;
+  }
+}
+
 @media (max-width: 500px) {
   .info > div:first-child {
     display: none;
