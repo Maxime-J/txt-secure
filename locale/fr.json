@@ -2,12 +2,12 @@
   "acceptTerms": "L'utilisation du service vaut acceptation des",
   "close": "Fermer",
   "created": {
-    "burnInfo": "accessible une seule fois",
+    "burnInfo": "lisible une seule fois",
     "copy": "Copier",
     "copySuccess": "Lien copié",
     "newShare": "Nouveau lien",
-    "title": "Lien à envoyer :",
-    "validUntil": "Valable jusqu'au"
+    "title": "Contenu disponible sur :",
+    "expiryOn": "Expiration le"
   },
   "decrypted": {
     "deleted": "Lisible dans cet onglet pendant",

@@ -26,8 +26,7 @@ function CreatedShare({ share, newShare }: CreatedShareProps) {
   };
 
   const selectLink = ({ target }: React.MouseEvent) => {
-    const selection = window.getSelection()!;
-    selection.setBaseAndExtent((target as Node), 0, (target as Node), 1);
+    (target as HTMLInputElement).select();
   };
 
   useEffect(() => {
@@ -43,23 +42,26 @@ function CreatedShare({ share, newShare }: CreatedShareProps) {
 
       <div className={styles.link}>
         <div>
-          <pre onClick={selectLink}>{share.link}</pre>
+          <input readOnly value={share.link} onClick={selectLink} />
         </div>
         <div>
           <Tooltip
-            PopperProps={{
-              disablePortal: true,
-            }}
             placement="top"
             open={copyDone}
+            title={strings.created.copySuccess}
+            describeChild={true}
             disableFocusListener
             disableHoverListener
             disableTouchListener
-            title={strings.created.copySuccess}
-            describeChild={true}
+            slotProps={{
+              popper: {
+                disablePortal: true,
+              }
+            }}
           >
             <Button
-              color="inherit"
+              variant="contained"
+              disableElevation
               onClick={copyLink}
             >
               <ContentCopyIcon />
@@ -71,8 +73,8 @@ function CreatedShare({ share, newShare }: CreatedShareProps) {
 
       <div className={styles.text}>
         <IconSpan icon={<AccessTimeIcon fontSize="inherit"/>}>
-          {`${strings.created.validUntil} ${share.expiration}`}
-          {share.burn && ` (${strings.created.burnInfo})`}
+          {`${strings.created.expiryOn} ${share.expiration}`}
+          {share.burn && ` - ${strings.created.burnInfo}`}
         </IconSpan>
       </div>
     </AppDiv>
