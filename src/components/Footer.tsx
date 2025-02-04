@@ -2,7 +2,7 @@ import { Link, useLoaderData } from 'react-router';
 
 import HomeIcon from '@mui/icons-material/Home';
 
-import useHandles from 'utils/useHandles';
+import useHandle from 'utils/useHandle';
 
 import strings from 'fr-locale';
 import styles from './Footer.module.css';
@@ -11,7 +11,7 @@ import { BackgroundInfos } from 'types';
 
 function Footer() {
   const { location, author, link } = useLoaderData<BackgroundInfos>();
-  const { showHome } = useHandles();
+  const { showHome } = useHandle();
 
   return (
     <div className={styles.footer}>
