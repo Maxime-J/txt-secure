@@ -30,6 +30,7 @@ export default [
       ...js.configs.recommended.rules,
       ...react.configs.flat.recommended.rules,
       '@stylistic/js/no-extra-semi': 'error',
+      '@stylistic/js/no-multi-spaces': ['error', { ignoreEOLComments: true }],
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
     },
