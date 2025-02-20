@@ -5,9 +5,9 @@
     "burnInfo": "lisible une seule fois",
     "copy": "Copier",
     "copySuccess": "Lien copié",
+    "expiryOn": "Expiration le",
     "newShare": "Nouveau lien",
-    "title": "Contenu disponible sur :",
-    "expiryOn": "Expiration le"
+    "title": "Contenu disponible sur :"
   },
   "decrypted": {
     "deleted": "Lisible dans cet onglet pendant",
@@ -44,5 +44,22 @@
   "hostname": "txt-secure.fr",
   "linkExpiredOrInvalid": "Lien expiré ou invalide",
   "password": "Mot de passe",
+  "routes": {
+    "about": {
+      "slug": "a-propos",
+      "title": "A propos"
+    },
+    "home": {
+      "title": "Partage sécurisé et temporaire"
+    },
+    "newLink": {
+      "slug": "nouveau-lien",
+      "title": "Nouveau lien"
+    },
+    "terms": {
+      "slug": "conditions",
+      "title": "CGU"
+    }
+  },
   "terms": "CGU"
 }

@@ -24,11 +24,11 @@ import styles from './ShareForm.module.css';
 import { NewShareState } from 'types';
 
 const VALIDITY_PERIODS = [
-  '5m',  //{strings.form.periods.5m}
-  '10m', //{strings.form.periods.10m}
-  '1h',  //{strings.form.periods.1h}
-  '1d',  //{strings.form.periods.1d}
-  '1w',  //{strings.form.periods.1w}
+  '5m',  // strings.form.periods.5m
+  '10m', // strings.form.periods.10m
+  '1h',  // strings.form.periods.1h
+  '1d',  // strings.form.periods.1d
+  '1w',  // strings.form.periods.1w
 ];
 
 interface ShareFormProps {
@@ -137,7 +137,7 @@ function ShareForm({ onCreated }: ShareFormProps) {
     {formState.error && (
       /*
         Errors:
-        {strings.form.errors.ip}
+        strings.form.errors.ip
        */
       <Alert severity="error">{strings.form.errors[formState.error as keyof typeof strings.form.errors]}</Alert>
     )}

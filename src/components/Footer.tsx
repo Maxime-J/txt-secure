@@ -24,9 +24,9 @@ function Footer() {
       </a>
       {showHome && <Link to="/" className={styles.home}><HomeIcon /></Link>}
       <div>
-        <Link to="/conditions">{strings.terms}</Link>
+        <Link to={`/${strings.routes.terms.slug}`}>{strings.terms}</Link>
         {' - '}
-        <Link to="/a-propos">{strings.footer.about}</Link>
+        <Link to={`/${strings.routes.about.slug}`}>{strings.footer.about}</Link>
       </div>
     </div>
   );

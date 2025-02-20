@@ -6,6 +6,8 @@ import Error from 'components/Error';
 
 import { getBackground, getContent, getShare } from 'utils/api';
 
+import strings from 'fr-locale';
+
 const loaders: Record<string, LoaderFunction> = {
   background: () => getBackground(),
   share: ({ params }) => getShare(params.id!),
@@ -23,11 +25,31 @@ const router = createBrowserRouter([
     loader: loaders.background,
     HydrateFallback: () => null,
     children: [
-      { path: '/', handle: { title: 'Partage sécurisé et temporaire' }, element: <Home /> },
-      { path: '/nouveau-lien', handle: { title: 'Nouveau lien' }, element: <NewShare /> },
-      { path: '/a-propos', handle: { title: 'A propos', showHome: true }, ...serverRoute },
-      { path: '/conditions', handle: { title: 'CGU', showHome: true }, ...serverRoute },
-      { path: '/:id', loader: loaders.share, element: <ViewShare /> },
+      {
+        path: '/',
+        handle: { title: strings.routes.home.title },
+        element: <Home />
+      },
+      {
+        path: `/${strings.routes.newLink.slug}`,
+        handle: { title: strings.routes.newLink.title },
+        element: <NewShare />
+      },
+      {
+        path: `/${strings.routes.about.slug}`,
+        handle: { title: strings.routes.about.title, showHome: true },
+        ...serverRoute
+      },
+      {
+        path: `/${strings.routes.terms.slug}`,
+        handle: { title: strings.routes.terms.title, showHome: true },
+        ...serverRoute
+      },
+      {
+        path: '/:id',
+        loader: loaders.share,
+        element: <ViewShare />
+      },
     ],
     errorElement: <Error />,
   },
