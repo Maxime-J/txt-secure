@@ -4,8 +4,9 @@ A service to securely share text data, where data is encrypted/decrypted in brow
 Started as a modernization of kpaste from Infomaniak while it was still using outdated stuff (https://github.com/Infomaniak/kpaste/issues/11), \
 it ended up as a complete rewrite, with streamlined UI and code.
 
-This is not directly useable as is (public assets and back end are not provided),\
-but it can be freely built.
+It is not meant to be reused, but friction is reduced as it can be freely built.
 
+## Reproducible builds
 With corepack enabled, or yarn matching package.json `packageManager`,\
 `yarn install --immutable && yarn build` produces the files used online.
+
