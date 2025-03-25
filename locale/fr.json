@@ -6,7 +6,7 @@
     "copy": "Copier",
     "copySuccess": "Lien copié",
     "expiryOn": "Expiration le",
-    "newShare": "Nouveau lien",
+    "newShare": "Nouveau message",
     "title": "Contenu disponible sur :"
   },
   "decrypted": {
@@ -37,9 +37,9 @@
     "validity": "Durée de validité"
   },
   "home": {
-    "about": "Le contenu est chiffré sur votre appareil et stocké sans la clé.",
-    "button": "Partager un contenu",
-    "description": "txt-secure.fr permet de partager une information de façon sécurisée. Votre texte sera stocké chiffré pour une durée limitée et accessible à partir d'un lien à envoyer au destinataire."
+    "about": "Le message est chiffré sur votre appareil et stocké sans la clé.",
+    "button": "Ecrire un message",
+    "description": "txt-secure.fr permet de partager du texte de façon sécurisée. Votre message est chiffré puis stocké pour une durée limitée en étant lisible uniquement à partir d'un lien et d'un éventuel mot de passe."
   },
   "hostname": "txt-secure.fr",
   "linkExpiredOrInvalid": "Lien expiré ou invalide",
