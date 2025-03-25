@@ -33,6 +33,7 @@ export default [
       '@stylistic/js/no-multi-spaces': ['error', { ignoreEOLComments: true }],
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
+      'react/jsx-curly-newline': 'error',
     },
   },
   ...tseslint.configs.recommended,
