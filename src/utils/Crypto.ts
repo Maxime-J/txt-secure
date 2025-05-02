@@ -1,5 +1,5 @@
 import { base58 } from '@scure/base';
-import { zlibSync, unzlibSync } from 'fflate';
+import { unzlibSync, zlibSync } from 'fflate';
 const { crypto } = globalThis;
 
 const base64 = {

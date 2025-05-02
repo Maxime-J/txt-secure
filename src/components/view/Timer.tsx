@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { formatDistanceToNow } from 'utils/date';
 
 interface TimerProps {

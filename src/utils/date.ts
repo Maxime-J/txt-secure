@@ -1,6 +1,6 @@
 import {
-  format,
   formatDistanceToNow as _formatDistanceToNow,
+  format,
 } from 'date-fns';
 import { fr } from 'date-fns/locale';
 

@@ -8,8 +8,9 @@
     "paths": {
       /* As in Vite config */
       "components/*": ["./src/components/*"],
-      "fr-locale": ["./locale/fr.json"],
+      "locale.json": ["./src/locale.json"],
       "package.json": ["./package.json"],
+      "queries": ["./src/queries.ts"],
       "utils/*": ["./src/utils/*"],
       /* TypeScript specific */
       "types": ["./src/types.ts"],

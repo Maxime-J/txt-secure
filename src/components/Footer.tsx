@@ -1,17 +1,14 @@
-import { Link, useLoaderData } from 'react-router';
+import { Link, useLoaderData, useMatches } from '@tanstack/react-router';
 
 import HomeIcon from '@mui/icons-material/Home';
 
-import useHandle from 'utils/useHandle';
+import { pages, strings } from 'locale.json';
 
-import strings from 'fr-locale';
 import styles from './Footer.module.css';
 
-import { BackgroundInfos } from 'types';
-
 function Footer() {
-  const { location, author, link } = useLoaderData<BackgroundInfos>();
-  const { showHome } = useHandle();
+  const { location, author, link } = useLoaderData({ from: '__root__' });
+  const { context: { showHome } } = useMatches().slice(-1)[0];
 
   return (
     <div className={styles.footer}>
@@ -24,9 +21,9 @@ function Footer() {
       </a>
       {showHome && <Link to="/" className={styles.home}><HomeIcon /></Link>}
       <div>
-        <Link to={`/${strings.routes.terms.slug}`}>{strings.terms}</Link>
+        <Link to={pages.terms.path}>{strings.terms}</Link>
         {' - '}
-        <Link to={`/${strings.routes.about.slug}`}>{strings.footer.about}</Link>
+        <Link to={pages.about.path}>{strings.footer.about}</Link>
       </div>
     </div>
   );

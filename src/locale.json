@@ -1,0 +1,66 @@
+{
+  "pages": {
+    "about": {
+      "path": "/a-propos",
+      "title": "A propos"
+    },
+    "home": {
+      "title": "Partage sécurisé et temporaire"
+    },
+    "newLink": {
+      "path": "/nouveau-lien",
+      "title": "Nouveau lien"
+    },
+    "terms": {
+      "path": "/conditions",
+      "title": "CGU"
+    },
+    "titleSuffix": "txt-secure.fr"
+  },
+  "strings": {
+    "acceptTerms": "L'utilisation du service vaut acceptation des",
+    "close": "Fermer",
+    "created": {
+      "burnInfo": "lisible une seule fois",
+      "copy": "Copier",
+      "copySuccess": "Lien copié",
+      "expiryOn": "Expiration le",
+      "newShare": "Nouveau message",
+      "title": "Contenu disponible sur :"
+    },
+    "decrypted": {
+      "deleted": "Lisible dans cet onglet pendant",
+      "deletedIn": "Supprimé dans",
+      "info": "Chiffré de bout en bout, via"
+    },
+    "error": "Problème technique",
+    "footer": {
+      "about": "A propos de txt-secure.fr",
+      "pictureBy": "Photo par"
+    },
+    "form": {
+      "burn": "Supprimer après la première lecture",
+      "content": "Contenu",
+      "ipLimited": "Votre adresse IP a dépassé le nombre de liens actifs autorisés.",
+      "password": "Protéger l’accès par un mot de passe",
+      "periods": {
+        "10m": "10 minutes",
+        "1d": "1 jour",
+        "1h": "1 heure",
+        "1w": "1 semaine",
+        "5m": "5 minutes"
+      },
+      "submit": "Créer un lien",
+      "validity": "Durée de validité"
+    },
+    "home": {
+      "about": "Le message est chiffré sur votre appareil et stocké sans la clé.",
+      "button": "Ecrire un message",
+      "description": "txt-secure.fr permet de partager du texte de façon sécurisée. Votre message est chiffré puis stocké pour une durée limitée en étant lisible uniquement à partir d'un lien et d'un éventuel mot de passe."
+    },
+    "hostname": "txt-secure.fr",
+    "linkExpiredOrInvalid": "Lien expiré ou invalide",
+    "password": "Mot de passe",
+    "terms": "CGU"
+  }
+}

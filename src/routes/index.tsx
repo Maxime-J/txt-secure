@@ -1,12 +1,19 @@
-import { Link } from 'react-router';
+import { Link, createFileRoute } from '@tanstack/react-router';
 
 import Fab from '@mui/material/Fab';
 import LockIcon from '@mui/icons-material/Lock';
 
 import AppDiv from 'components/AppDiv';
+import { pages, strings } from 'locale.json';
 
-import strings from 'fr-locale';
-import styles from './Home.module.css';
+import styles from './index.module.css';
+
+export const Route = createFileRoute('/')({
+  beforeLoad: () => ({
+    title: pages.home.title,
+  }),
+  component: Home,
+});
 
 function Home() {
   return (
@@ -19,7 +26,7 @@ function Home() {
           <LockIcon />
           <p>{strings.home.about}</p>
         </div>
-        <Link to={`/${strings.routes.newLink.slug}`}>
+        <Link to={pages.newLink.path}>
           <Fab variant="extended" sx={{ width: '100%', marginTop: '20px' }}>
             {strings.home.button}
           </Fab>
@@ -28,5 +35,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

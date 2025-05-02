@@ -1,17 +1,24 @@
 import { memo, useEffect, useMemo, useState } from 'react';
-import { useLoaderData, useLocation } from 'react-router';
+import { createFileRoute, useLoaderData, useLocation } from '@tanstack/react-router';
 
 import AppDiv from 'components/AppDiv';
 import DecryptedShare from 'components/view/DecryptedShare';
 import PasswordInput from 'components/PasswordInput';
-
 import Crypto from 'utils/Crypto';
 import useInputValue from 'utils/useInputValue';
+import { shareQuery } from 'queries';
+import { strings } from 'locale.json';
 
-import strings from 'fr-locale';
-import styles from './ViewShare.module.css';
+import styles from './view.module.css';
 
-import { ShareData } from 'types';
+// Virtual file route: path generated from routes.js
+export const Route = createFileRoute('/$shareId')({
+  component: ViewShare,
+  loader: ({ context: { queryClient }, params }) => {
+    return queryClient.ensureQueryData(shareQuery(params.shareId));
+  },
+  gcTime: 0,
+});
 
 const PasswordCheck = memo<typeof PasswordInput>(({ onChange }) => (
   <PasswordInput onChange={onChange} />
@@ -19,7 +26,7 @@ const PasswordCheck = memo<typeof PasswordInput>(({ onChange }) => (
 PasswordCheck.displayName = 'PasswordCheck';
 
 function ViewShare() {
-  const share = useLoaderData<ShareData>();
+  const share = useLoaderData({ from: '/$shareId' });
   const { hash } = useLocation();
 
   const [notFound, setNotFound] = useState(!share);
@@ -28,8 +35,7 @@ function ViewShare() {
 
   const crypto = useMemo(() => {
     if (notFound) return;
-    let key = hash.substring(1);
-    key = key.split('&', 1)[0];
+    const key = hash.split('&', 1)[0];
 
     return Crypto({
       key58: key,
@@ -76,5 +82,3 @@ function ViewShare() {
     </AppDiv>
   );
 }
-
-export default ViewShare;

@@ -1,11 +1,10 @@
 import { ChangeEventHandler, Ref, useState } from 'react';
 
 import { IconButton, Input, InputAdornment } from '@mui/material';
-
 import VisibilityIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOffOutlined';
 
-import strings from 'fr-locale';
+import { strings } from 'locale.json';
 
 interface PasswordInputProps {
   inputRef?: Ref<HTMLInputElement>,

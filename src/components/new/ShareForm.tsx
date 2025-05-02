@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 
 import {
   Alert,
@@ -12,13 +13,12 @@ import {
 import AcceptTerms from 'components/new/AcceptTerms';
 import AppDiv from 'components/AppDiv';
 import PasswordInput from 'components/PasswordInput';
-
-import { createShare } from 'utils/api';
 import Crypto from 'utils/Crypto';
 import { formatDate } from 'utils/date';
 import useInputValue from 'utils/useInputValue';
+import { shareMutation } from 'queries';
+import { strings } from 'locale.json';
 
-import strings from 'fr-locale';
 import styles from './ShareForm.module.css';
 
 import { NewShareState } from 'types';
@@ -35,44 +35,39 @@ interface ShareFormProps {
   onCreated: (data: NewShareState) => void,
 }
 
-interface FormState {
-  sending?: boolean,
-  error?: string,
-}
-
 function ShareForm({ onCreated }: ShareFormProps) {
   const [content, onContentChange] = useInputValue('');
   const [passwordEnabled, setPasswordEnabled] = useState(false);
-  const [formState, setFormState] = useState<FormState>({});
   const passwordRef = useRef<HTMLInputElement>(null);
   const burnRef = useRef<HTMLInputElement>(null);
   const periodRef = useRef<HTMLInputElement>(null);
+
+  const mutation = useMutation(shareMutation);
 
   const create = async () => {
     const { encrypt, params: cryptoParams } = Crypto();
     const encrypted = await encrypt(content, passwordEnabled ? passwordRef.current!.value : '');
 
-    const { error, id, expirated_at } = await createShare({
-      encrypted,
-      vector: cryptoParams.vector64,
-      salt: cryptoParams.salt64,
-      with_password: passwordEnabled && passwordRef.current!.value !== '',
-      validity: periodRef.current!.value,
-      burn: burnRef.current!.checked,
-    });
+    try {
+      const { id, expirated_at } = await mutation.mutateAsync({
+        encrypted,
+        vector: cryptoParams.vector64,
+        salt: cryptoParams.salt64,
+        with_password: passwordEnabled && passwordRef.current!.value !== '',
+        validity: periodRef.current!.value,
+        burn: burnRef.current!.checked,
+      });
 
-    if (error) {
-      setFormState({ error });
-      return;
+      const link = `${location.origin}/${id}#${cryptoParams.key58}`;
+
+      onCreated({
+        link,
+        expiration: formatDate(expirated_at * 1000),
+        burn: burnRef.current!.checked,
+      });
+    } catch {
+      // Rerender triggered by mutation error
     }
-
-    const link = `${location.origin}/${id}#${cryptoParams.key58}`;
-
-    onCreated({
-      link,
-      expiration: formatDate(expirated_at * 1000),
-      burn: burnRef.current!.checked,
-    });
   };
 
   const togglePassword = () => {
@@ -134,25 +129,18 @@ function ShareForm({ onCreated }: ShareFormProps) {
         </div>
       </AppDiv>
     )}
-    {formState.error && (
-      /*
-        Errors:
-        strings.form.errors.ip
-       */
-      <Alert severity="error">{strings.form.errors[formState.error as keyof typeof strings.form.errors]}</Alert>
+    {mutation.isError && (
+      <Alert severity="error">{strings.form.ipLimited}</Alert>
     )}
     <AcceptTerms>
       <Button
-        disabled={content.length === 0 || formState.sending}
+        disabled={content.length === 0 || mutation.isPending}
         variant="contained"
-        onClick={() => {
-          setFormState({ sending: true });
-          create();
-        }}
+        onClick={create}
       >
         {strings.form.submit}
       </Button>
-      {formState.sending && (
+      {mutation.isPending && (
         <CircularProgress
           size={20}
           sx={{

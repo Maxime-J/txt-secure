@@ -1,4 +1,5 @@
-import strings from 'fr-locale';
+import { strings } from 'locale.json';
+
 import styles from './Error.module.css';
 
 function Error() {

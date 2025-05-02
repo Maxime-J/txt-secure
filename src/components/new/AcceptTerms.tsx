@@ -1,5 +1,5 @@
 import { PropsWithChildren, useState } from 'react';
-import { useFetcher } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
 
 import {
   Alert,
@@ -9,15 +9,21 @@ import {
   DialogContent,
 } from '@mui/material';
 
-import strings from 'fr-locale';
+import { getContentQuery } from 'queries';
+import { pages, strings } from 'locale.json';
+
 import styles from './AcceptTerms.module.css';
 
 function AcceptTerms({ children }: PropsWithChildren) {
-  const fetcher = useFetcher();
+  const query = useQuery({
+    ...getContentQuery(pages.terms.path),
+    enabled: false,
+  });
+
   const [termsOpened, setTermsOpened] = useState(false);
 
   const openTerms = () => {
-    if (!fetcher.data) fetcher.load('/conditions');
+    if (!query.data) query.refetch();
     setTermsOpened(true);
   };
 
@@ -36,9 +42,9 @@ function AcceptTerms({ children }: PropsWithChildren) {
       onClose={closeTerms}
       scroll="body"
     >
-      {fetcher.data
+      {query.data
         ? <>
-          <DialogContent className="server-content" dangerouslySetInnerHTML={{ __html: fetcher.data }} />
+          <DialogContent className="server-content" dangerouslySetInnerHTML={{ __html: query.data }} />
           <DialogActions sx={{ justifyContent: 'center' }}>
             <span onClick={closeTerms} className={styles.close}>{strings.close}</span>
           </DialogActions>

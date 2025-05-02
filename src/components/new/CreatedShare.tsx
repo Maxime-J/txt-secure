@@ -6,8 +6,8 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopyOutlined';
 
 import AppDiv from 'components/AppDiv';
 import IconSpan from 'components/IconSpan';
+import { strings } from 'locale.json';
 
-import strings from 'fr-locale';
 import styles from './CreatedShare.module.css';
 
 import { NewShareState } from 'types';

@@ -1,4 +1,5 @@
 import { PropsWithChildren, ReactNode } from 'react';
+
 import styles from './IconSpan.module.css';
 
 interface IconSpanProps {

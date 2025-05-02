@@ -1,9 +1,7 @@
 import { CSSProperties, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData } from '@tanstack/react-router';
 
 import styles from './Background.module.css';
-
-import { BackgroundInfos } from 'types';
 
 interface BackgroundCSS extends CSSProperties {
   '--background': string,
@@ -11,7 +9,7 @@ interface BackgroundCSS extends CSSProperties {
 
 function Background() {
   const [loaded, setLoaded] = useState(false);
-  const { file } = useLoaderData<BackgroundInfos>();
+  const { file } = useLoaderData({ from: '__root__' });
 
   const backgroundURL = `/backgrounds/${file}`;
 

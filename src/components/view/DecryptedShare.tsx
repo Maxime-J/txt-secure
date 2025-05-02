@@ -1,10 +1,10 @@
-import IconSpan from 'components/IconSpan';
-import Timer from 'components/view/Timer';
-
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LockIcon from '@mui/icons-material/Lock';
 
-import strings from 'fr-locale';
+import IconSpan from 'components/IconSpan';
+import Timer from 'components/view/Timer';
+import { strings } from 'locale.json';
+
 import styles from './DecryptedShare.module.css';
 
 interface DecryptedShareProps {

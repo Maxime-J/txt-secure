@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+
 import styles from './AppDiv.module.css';
 
 function AppDiv({ children }: PropsWithChildren) {
