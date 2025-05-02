@@ -7,7 +7,7 @@ import { pages } from 'locale.json';
 
 import { NewShareState } from 'types';
 
-// Virtual file route: path generated from routes.js.
+// Virtual file route: path generated from routes.js
 export const Route = createFileRoute('/nouveau-lien')({
   component: NewShare,
   beforeLoad: () => ({
