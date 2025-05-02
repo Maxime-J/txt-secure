@@ -33,6 +33,9 @@ function RootComponent() {
   const { pathname, context: { title } } = useMatches().slice(-1)[0];
 
   useEffect(() => {
+    const root = document.getElementById('root')!;
+    if (root.scrollTop !== 0) root.scrollTo(0, 0);
+
     let newTitle = title ?? '';
     if (newTitle !== '' && pathname !== '/') {
       newTitle += ` | ${pages.titleSuffix}`;
