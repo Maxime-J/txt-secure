@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "generate-routes": "tsr generate",
-    "update-strings": "i18next -c parser.config.js 'src/**/*.{ts,tsx}'",
+    "update-locale": "i18next -c parser.config.js 'src/**/*.{ts,tsx}'",
     "lint": "eslint src"
   },
   "dependencies": {
