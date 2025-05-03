@@ -1,16 +1,16 @@
 import { BaseLexer } from 'i18next-parser';
 
-class StringsLexer extends BaseLexer {
+class LocaleLexer extends BaseLexer {
   constructor() {
     super();
-    this.regex = /((?:strings|pages)\.)([\w.]*)(?:\[.*\])*/g;
+    this.regex = /((?:pages|strings)\.[\w.]*)(?:\[.*\]|>)*/g;
+    this.ignore = /[[|>]/;
   }
 
   extract(content) {
     for (const match of content.matchAll(this.regex)) {
-      console.log(match[0]);
-      if (!match[0].includes('[')) {
-        this.keys.push({ key: match[1] + match[2] });
+      if (!this.ignore.test(match[0])) {
+        this.keys.push({ key: match[1] });
       }
     }
     return this.keys;
@@ -22,7 +22,7 @@ export default {
   output: 'src/locale.json',
   sort: true,
   lexers: {
-    tsx: [StringsLexer],
-    ts: [StringsLexer],
+    ts: [LocaleLexer],
+    tsx: [LocaleLexer],
   },
 };

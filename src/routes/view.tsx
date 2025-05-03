@@ -6,7 +6,7 @@ import DecryptedShare from 'components/view/DecryptedShare';
 import PasswordInput from 'components/PasswordInput';
 import Crypto from 'utils/Crypto';
 import useInputValue from 'utils/useInputValue';
-import { shareQuery } from 'queries';
+import { getShareQuery } from 'queries';
 import { strings } from 'locale.json';
 
 import styles from './view.module.css';
@@ -15,7 +15,7 @@ import styles from './view.module.css';
 export const Route = createFileRoute('/$shareId')({
   component: ViewShare,
   loader: ({ context: { queryClient }, params }) => {
-    return queryClient.ensureQueryData(shareQuery(params.shareId));
+    return queryClient.ensureQueryData(getShareQuery(params.shareId));
   },
   gcTime: 0,
 });

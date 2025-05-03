@@ -23,7 +23,7 @@ import styles from './ShareForm.module.css';
 
 import { NewShareState } from 'types';
 
-const VALIDITY_PERIODS = [
+const VALIDITY_PERIODS: Array<keyof typeof strings.form.periods> = [
   '5m',  // strings.form.periods.5m
   '10m', // strings.form.periods.10m
   '1h',  // strings.form.periods.1h
@@ -102,7 +102,7 @@ function ShareForm({ onCreated }: ShareFormProps) {
                 key={validityPeriod}
                 value={validityPeriod}
               >
-                {strings.form.periods[validityPeriod as keyof typeof strings.form.periods]}
+                {strings.form.periods[validityPeriod]}
               </MenuItem>
             ))}
           </Select>

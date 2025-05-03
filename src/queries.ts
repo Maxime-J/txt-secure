@@ -1,4 +1,5 @@
 import { queryOptions } from '@tanstack/react-query';
+
 import { fetchApi } from 'utils/api';
 
 import {
@@ -19,7 +20,7 @@ export const getContentQuery = (pathname: string) => queryOptions({
   enabled: false,
 });
 
-export const shareQuery = (shareId: string) => queryOptions({
+export const getShareQuery = (shareId: string) => queryOptions({
   queryKey: ['share', shareId],
   queryFn: () => fetchApi<ShareData>(`share/${shareId}`),
   gcTime: 0,
@@ -27,14 +28,14 @@ export const shareQuery = (shareId: string) => queryOptions({
 
 export const shareMutation = {
   mutationFn: async (data: ShareCreationRequest) => {
-    const res = await fetchApi<ShareCreationResponse>('share', {
+    const result = await fetchApi<ShareCreationResponse>('share', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     });
-    if (res.error) throw new Error();
-    return res;
+    if (result.error) throw new Error();
+    return result;
   },
 };

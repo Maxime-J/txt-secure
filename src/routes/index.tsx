@@ -9,10 +9,10 @@ import { pages, strings } from 'locale.json';
 import styles from './index.module.css';
 
 export const Route = createFileRoute('/')({
+  component: Home,
   beforeLoad: () => ({
     title: pages.home.title,
   }),
-  component: Home,
 });
 
 function Home() {

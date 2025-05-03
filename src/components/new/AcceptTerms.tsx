@@ -15,12 +15,12 @@ import { pages, strings } from 'locale.json';
 import styles from './AcceptTerms.module.css';
 
 function AcceptTerms({ children }: PropsWithChildren) {
+  const [termsOpened, setTermsOpened] = useState(false);
+
   const query = useQuery({
     ...getContentQuery(pages.terms.path),
     enabled: false,
   });
-
-  const [termsOpened, setTermsOpened] = useState(false);
 
   const openTerms = () => {
     if (!query.data) query.refetch();

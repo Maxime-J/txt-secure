@@ -4,15 +4,13 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [
-    react(),
-  ],
+  plugins: [react()],
   resolve: {
     alias: {
       components: path.resolve(__dirname, 'src/components/'),
       'locale.json': path.resolve(__dirname, 'src/locale.json'),
       'package.json': path.resolve(__dirname, 'package.json'),
-      'queries': path.resolve(__dirname, 'src/queries.ts'),
+      queries: path.resolve(__dirname, 'src/queries.ts'),
       utils: path.resolve(__dirname, 'src/utils/'),
     },
   },
