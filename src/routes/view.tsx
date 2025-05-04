@@ -17,6 +17,7 @@ export const Route = createFileRoute('/$shareId')({
   loader: ({ context: { queryClient }, params }) => {
     return queryClient.ensureQueryData(getShareQuery(params.shareId));
   },
+  shouldReload: false,
   gcTime: 0,
 });
 
