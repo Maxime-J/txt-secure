@@ -44,12 +44,6 @@ function ViewShare() {
     });
   }, []);
 
-  const render = () => {
-    if (notFound) return <strong className={styles.invalid}>{strings.linkExpiredOrInvalid}</strong>;
-    if (content) return <DecryptedShare content={content} expiration={share.expirated_at} burn={share.burn} />;
-    if (share.with_password) return <PasswordCheck onChange={onPasswordChange} />;
-  };
-
   useEffect(() => {
     if (notFound || share.with_password && password === '') return;
     (async () => {
@@ -75,6 +69,12 @@ function ViewShare() {
       clearInterval(intervalId);
     };
   }, [notFound]);
+
+  const render = () => {
+    if (notFound) return <strong className={styles.invalid}>{strings.linkExpiredOrInvalid}</strong>;
+    if (content) return <DecryptedShare content={content} expiratedAt={share.expirated_at} burn={share.burn} />;
+    if (share.with_password) return <PasswordCheck onChange={onPasswordChange} />;
+  };
 
   return (
     <AppDiv>

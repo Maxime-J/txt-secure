@@ -33,24 +33,24 @@ function AcceptTerms({ children }: PropsWithChildren) {
 
   return (
     <>
-    <Alert severity="info" className={styles.info}>
-      <div>{`${strings.acceptTerms} `}<a onClick={openTerms} className={styles.link}>{strings.terms}</a></div>
-      <div className={styles.child}>{children}</div>
-    </Alert>
-    <Dialog
-      open={termsOpened}
-      onClose={closeTerms}
-      scroll="body"
-    >
-      {query.data
-        ? <>
-          <DialogContent className="server-content" dangerouslySetInnerHTML={{ __html: query.data }} />
-          <DialogActions sx={{ justifyContent: 'center' }}>
-            <span onClick={closeTerms} className={styles.close}>{strings.close}</span>
-          </DialogActions>
-          </>
-        : <DialogContent><CircularProgress size={20} sx={{ display: 'block' }}/></DialogContent>}
-    </Dialog>
+      <Alert severity="info" className={styles.info}>
+        <div>{`${strings.acceptTerms} `}<a onClick={openTerms} className={styles.link}>{strings.terms}</a></div>
+        <div className={styles.child}>{children}</div>
+      </Alert>
+      <Dialog
+        open={termsOpened}
+        onClose={closeTerms}
+        scroll="body"
+      >
+        {query.data
+          ? <>
+              <DialogContent className="server-content" dangerouslySetInnerHTML={{ __html: query.data }} />
+              <DialogActions sx={{ justifyContent: 'center' }}>
+                <span onClick={closeTerms} className={styles.close}>{strings.close}</span>
+              </DialogActions>
+            </>
+          : <DialogContent><CircularProgress size={20} sx={{ display: 'block' }}/></DialogContent>}
+      </Dialog>
     </>
   );
 }

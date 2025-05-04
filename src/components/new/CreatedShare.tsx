@@ -35,54 +35,54 @@ function CreatedShare({ share, newShare }: CreatedShareProps) {
 
   return (
     <>
-    <AppDiv>
-      <span className={styles.text}>
-        {strings.created.title}
-      </span>
+      <AppDiv>
+        <span className={styles.text}>
+          {strings.created.title}
+        </span>
 
-      <div className={styles.link}>
-        <div>
-          <input readOnly value={share.link} onClick={selectLink} />
-        </div>
-        <div>
-          <Tooltip
-            placement="top"
-            open={copyDone}
-            title={strings.created.copySuccess}
-            describeChild={true}
-            disableFocusListener
-            disableHoverListener
-            disableTouchListener
-            slotProps={{
-              popper: {
-                disablePortal: true,
-              }
-            }}
-          >
-            <Button
-              variant="contained"
-              disableElevation
-              onClick={copyLink}
+        <div className={styles.link}>
+          <div>
+            <input readOnly value={share.link} onClick={selectLink} />
+          </div>
+          <div>
+            <Tooltip
+              placement="top"
+              open={copyDone}
+              title={strings.created.copySuccess}
+              describeChild={true}
+              disableFocusListener
+              disableHoverListener
+              disableTouchListener
+              slotProps={{
+                popper: {
+                  disablePortal: true,
+                }
+              }}
             >
-              <ContentCopyIcon />
-              <span>{strings.created.copy}</span>
-            </Button>
-          </Tooltip>
+              <Button
+                variant="contained"
+                disableElevation
+                onClick={copyLink}
+              >
+                <ContentCopyIcon />
+                <span>{strings.created.copy}</span>
+              </Button>
+            </Tooltip>
+          </div>
         </div>
-      </div>
 
-      <div className={styles.text}>
-        <IconSpan icon={<AccessTimeIcon fontSize="inherit"/>}>
-          {`${strings.created.expiryOn} ${share.expiration}`}
-          {share.burn && ` - ${strings.created.burnInfo}`}
-        </IconSpan>
+        <div className={styles.text}>
+          <IconSpan icon={<AccessTimeIcon fontSize="inherit"/>}>
+            {`${strings.created.expiryOn} ${share.expiration}`}
+            {share.burn && ` - ${strings.created.burnInfo}`}
+          </IconSpan>
+        </div>
+      </AppDiv>
+      <div className={styles.new}>
+        <Fab variant="extended" onClick={newShare}>
+          {strings.created.newShare}
+        </Fab>
       </div>
-    </AppDiv>
-    <div className={styles.new}>
-      <Fab variant="extended" onClick={newShare}>
-        {strings.created.newShare}
-      </Fab>
-    </div>
     </>
   );
 }

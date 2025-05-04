@@ -10,35 +10,35 @@ import styles from './DecryptedShare.module.css';
 interface DecryptedShareProps {
   content: string,
   /** Unix timestamp in seconds */
-  expiration: number,
+  expiratedAt: number,
   burn: boolean,
 }
 
-function DecryptedShare({ content, expiration, burn }: DecryptedShareProps) {
+function DecryptedShare({ content, expiratedAt, burn }: DecryptedShareProps) {
   return (
     <>
-    <div>
-      <pre className={styles.pre}>{content}</pre>
-    </div>
+      <div>
+        <pre className={styles.pre}>{content}</pre>
+      </div>
 
-    <div className={styles.infos}>
-      <IconSpan icon={<LockIcon fontSize="inherit" />}>
-        {`${strings.decrypted.info} `}
-        <a
-          href="/"
-          rel="noreferrer"
-          className={styles.link}
-        >
-          {strings.hostname}
-        </a>
-      </IconSpan>
-      <IconSpan icon={<AccessTimeIcon fontSize="inherit" />}>
-        {burn
-          ? `${strings.decrypted.deleted} `
-          : `${strings.decrypted.deletedIn} `}
-        <Timer timestamp={expiration * 1000} />
-      </IconSpan>
-    </div>
+      <div className={styles.infos}>
+        <IconSpan icon={<LockIcon fontSize="inherit" />}>
+          {`${strings.decrypted.info} `}
+          <a
+            href="/"
+            rel="noreferrer"
+            className={styles.link}
+          >
+            {strings.hostname}
+          </a>
+        </IconSpan>
+        <IconSpan icon={<AccessTimeIcon fontSize="inherit" />}>
+          {burn
+            ? `${strings.decrypted.deleted} `
+            : `${strings.decrypted.deletedIn} `}
+          <Timer timestamp={expiratedAt * 1000} />
+        </IconSpan>
+      </div>
     </>
   );
 }

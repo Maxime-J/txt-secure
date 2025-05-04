@@ -13,7 +13,8 @@ export async function fetchApi<T>(
 
   const response = await fetch(`${API_BASE}${endpoint}`, options);
 
-  // @ts-expect-error: correctly handled at runtime
+  // @ts-expect-error: T is the expected type on success.
+  // root errorComponent is shown if null isn't correctly handled.
   if (!response.ok) return null;
 
   const contentType = response.headers.get('Content-Type')!;

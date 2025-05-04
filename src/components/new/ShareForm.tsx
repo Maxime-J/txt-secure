@@ -66,93 +66,87 @@ function ShareForm({ onCreated }: ShareFormProps) {
         burn: burnRef.current!.checked,
       });
     } catch {
-      // Rerender triggered by mutation error
+      // Re-render triggered by mutation error
     }
-  };
-
-  const togglePassword = () => {
-    setPasswordEnabled(!passwordEnabled);
   };
 
   return (
     <>
-    <AppDiv>
-      <span className={styles.label}>{strings.form.content}</span>
-      <textarea
-        onChange={onContentChange}
-        autoFocus
-        spellCheck="false"
-        maxLength={1000}
-        className={styles.textarea}
-      />
-      <div className={styles.counter}><span>{`${content.length}/1000`}</span></div>
-    </AppDiv>
-    <AppDiv>
-      <div className={styles.settings}>
-        <div>
-          <span className={styles.label}>{strings.form.validity}</span>
-          <Select
-            defaultValue={'1w'}
-            variant="outlined"
-            inputProps={{ ref: periodRef }}
-            className={styles.select}
-          >
-            {VALIDITY_PERIODS.map((validityPeriod) => (
-              <MenuItem
-                key={validityPeriod}
-                value={validityPeriod}
-              >
-                {strings.form.periods[validityPeriod]}
-              </MenuItem>
-            ))}
-          </Select>
-        </div>
-        <div>
-          <div>
-            <span className={styles.label}>{strings.form.burn}</span>
-            <Switch inputRef={burnRef} />
-          </div>
-          <div>
-            <span className={styles.label}>{strings.form.password}</span>
-            <Switch
-              onChange={togglePassword}
-              checked={passwordEnabled}
-            />
-          </div>
-        </div>
-      </div>
-    </AppDiv>
-    {passwordEnabled && (
       <AppDiv>
-        <div>
-          <PasswordInput inputRef={passwordRef} />
+        <span className={styles.label}>{strings.form.content}</span>
+        <textarea
+          onChange={onContentChange}
+          autoFocus
+          spellCheck="false"
+          maxLength={1000}
+          className={styles.textarea}
+        />
+        <div className={styles.counter}><span>{`${content.length}/1000`}</span></div>
+      </AppDiv>
+      <AppDiv>
+        <div className={styles.settings}>
+          <div>
+            <span className={styles.label}>{strings.form.validity}</span>
+            <Select
+              variant="outlined"
+              defaultValue="1w"
+              inputProps={{ ref: periodRef }}
+              className={styles.select}
+            >
+              {VALIDITY_PERIODS.map((validityPeriod) => (
+                <MenuItem
+                  key={validityPeriod}
+                  value={validityPeriod}
+                >
+                  {strings.form.periods[validityPeriod]}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
+          <div>
+            <div>
+              <span className={styles.label}>{strings.form.burn}</span>
+              <Switch inputRef={burnRef} />
+            </div>
+            <div>
+              <span className={styles.label}>{strings.form.password}</span>
+              <Switch
+                onChange={() => { setPasswordEnabled(!passwordEnabled) }}
+                checked={passwordEnabled}
+              />
+            </div>
+          </div>
         </div>
       </AppDiv>
-    )}
-    {mutation.isError && (
-      <Alert severity="error">{strings.form.ipLimited}</Alert>
-    )}
-    <AcceptTerms>
-      <Button
-        disabled={content.length === 0 || mutation.isPending}
-        variant="contained"
-        onClick={create}
-      >
-        {strings.form.submit}
-      </Button>
-      {mutation.isPending && (
-        <CircularProgress
-          size={20}
-          sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            marginTop: '-10px',
-            marginLeft: '-10px',
-          }}
-        />
+      {passwordEnabled && (
+        <AppDiv>
+          <div>
+            <PasswordInput inputRef={passwordRef} />
+          </div>
+        </AppDiv>
       )}
-    </AcceptTerms>
+      {mutation.isError && <Alert severity="error">{strings.form.ipLimited}</Alert>}
+      <AcceptTerms>
+        <Button
+          variant="contained"
+          disabled={content.length === 0 || mutation.isPending}
+          onClick={create}
+        >
+          {strings.form.submit}
+        </Button>
+        {mutation.isPending && (
+          <CircularProgress
+            size={20}
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              marginTop: '-10px',
+              marginLeft: '-10px',
+            }}
+          />
+        )}
+      </AcceptTerms>
     </>
   );
 }

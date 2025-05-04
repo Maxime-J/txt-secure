@@ -22,6 +22,7 @@ export interface ShareCreationRequest {
 
 export interface ShareCreationResponse {
   id: string,
+  /** Unix timestamp in seconds */
   expirated_at: number,
   error?: string,
 }
