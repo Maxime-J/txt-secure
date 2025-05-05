@@ -31,18 +31,25 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 });
 
 function LocationEffects() {
-  const { pathname, context: { title } } = useRouterMatches().slice(-1)[0];
+  const matches = useRouterMatches();
+  const { pathname, context: { title } } = matches.slice(-1)[0];
 
   useEffect(() => {
-    const root = document.getElementById('root')!;
-    if (root.scrollTop !== 0) root.scrollTo(0, 0);
-
     let newTitle = title ?? '';
     if (newTitle !== '' && pathname !== '/') {
       newTitle += ` | ${pages.titleSuffix}`;
     }
     document.title = newTitle;
   }, [title]);
+
+  useEffect(() => {
+    const loadPromises = matches.map((match) => match.loadPromise);
+
+    Promise.allSettled(loadPromises).then(() => {
+      const root = document.getElementById('root')!;
+      if (root.scrollTop !== 0) root.scrollTo(0, 0);
+    });
+  }, [matches]);
 
   return null;
 }
