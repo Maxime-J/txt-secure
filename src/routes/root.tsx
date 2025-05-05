@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Outlet, createRootRouteWithContext, useMatches } from '@tanstack/react-router';
+import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
 import { QueryClient } from '@tanstack/react-query';
 
 import { ThemeProvider } from '@mui/material/styles';
@@ -7,6 +7,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import Background from 'components/Background';
 import Footer from 'components/Footer';
 import Error from 'components/Error';
+import useRouterMatches from 'utils/useRouterMatches';
 import { backgroundQuery } from 'queries';
 import { pages } from 'locale.json';
 
@@ -29,8 +30,8 @@ export const Route = createRootRouteWithContext<RouterContext>()({
   errorComponent: Error,
 });
 
-function RootComponent() {
-  const { pathname, context: { title } } = useMatches().slice(-1)[0];
+function LocationEffects() {
+  const { pathname, context: { title } } = useRouterMatches().slice(-1)[0];
 
   useEffect(() => {
     const root = document.getElementById('root')!;
@@ -43,15 +44,22 @@ function RootComponent() {
     document.title = newTitle;
   }, [title]);
 
+  return null;
+}
+
+function RootComponent() {
   return (
-    <ThemeProvider theme={muiTheme}>
-      <div className={styles.main}>
-        <Background />
-        <div className={styles.ui}>
-          <Outlet />
+    <>
+      <LocationEffects />
+      <ThemeProvider theme={muiTheme}>
+        <div className={styles.main}>
+          <Background />
+          <div className={styles.ui}>
+            <Outlet />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </>
   );
 }

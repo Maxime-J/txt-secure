@@ -1,14 +1,15 @@
-import { Link, useLoaderData, useMatches } from '@tanstack/react-router';
+import { Link, useLoaderData } from '@tanstack/react-router';
 
 import HomeIcon from '@mui/icons-material/Home';
 
+import useRouterMatches from 'utils/useRouterMatches';
 import { pages, strings } from 'locale.json';
 
 import styles from './Footer.module.css';
 
 function Footer() {
   const { location, author, link } = useLoaderData({ from: '__root__' });
-  const { context: { showHome } } = useMatches().slice(-1)[0];
+  const { context: { showHome } } = useRouterMatches().slice(-1)[0];
 
   return (
     <div className={styles.footer}>
