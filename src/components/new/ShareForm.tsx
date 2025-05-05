@@ -23,6 +23,8 @@ import styles from './ShareForm.module.css';
 
 import { NewShareState } from 'types';
 
+const MAX_LENGTH = 1000;
+
 const VALIDITY_PERIODS: Array<keyof typeof strings.form.periods> = [
   '5m',  // strings.form.periods.5m
   '10m', // strings.form.periods.10m
@@ -41,6 +43,7 @@ function ShareForm({ onCreated }: ShareFormProps) {
   const passwordRef = useRef<HTMLInputElement>(null);
   const burnRef = useRef<HTMLInputElement>(null);
   const periodRef = useRef<HTMLInputElement>(null);
+  const charsCountRef = useRef<HTMLSpanElement>(null);
 
   const mutation = useMutation(shareMutation);
 
@@ -75,13 +78,18 @@ function ShareForm({ onCreated }: ShareFormProps) {
       <AppDiv>
         <span className={styles.label}>{strings.form.content}</span>
         <textarea
-          onChange={onContentChange}
+          onChange={(e) => {
+            charsCountRef.current!.textContent = `${e.target.value.length}`;
+            onContentChange(e);
+          }}
           autoFocus
           spellCheck="false"
-          maxLength={1000}
+          maxLength={MAX_LENGTH}
           className={styles.textarea}
         />
-        <div className={styles.counter}><span>{`${content.length}/1000`}</span></div>
+        <div className={styles.counter}>
+          <span ref={charsCountRef}>{content.length}</span><span>{`/${MAX_LENGTH}`}</span>
+        </div>
       </AppDiv>
       <AppDiv>
         <div className={styles.settings}>
