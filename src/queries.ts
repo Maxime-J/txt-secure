@@ -17,7 +17,6 @@ export const backgroundQuery = queryOptions({
 export const getContentQuery = (pathname: string) => queryOptions({
   queryKey: ['content', pathname],
   queryFn: () => fetchApi<string>(`content${pathname}`),
-  enabled: false,
 });
 
 export const getShareQuery = (shareId: string) => queryOptions({
