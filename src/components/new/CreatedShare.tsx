@@ -73,7 +73,7 @@ function CreatedShare({ share, newShare }: CreatedShareProps) {
 
         <div className={styles.text}>
           <IconSpan icon={<AccessTimeIcon fontSize="inherit"/>}>
-            {`${strings.created.expiryOn} ${share.expiration}`}
+            {`${strings.created.expiresOn} ${share.expiration}`}
             {share.burn && ` - ${strings.created.burnInfo}`}
           </IconSpan>
         </div>

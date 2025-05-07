@@ -34,8 +34,8 @@ function DecryptedShare({ content, expiratedAt, burn }: DecryptedShareProps) {
         </IconSpan>
         <IconSpan icon={<AccessTimeIcon fontSize="inherit" />}>
           {burn
-            ? `${strings.decrypted.deleted} `
-            : `${strings.decrypted.deletedIn} `}
+            ? `${strings.decrypted.readableFor} `
+            : `${strings.decrypted.expiresIn} `}
           <Timer timestamp={expiratedAt * 1000} />
         </IconSpan>
       </div>

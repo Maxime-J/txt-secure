@@ -21,17 +21,17 @@
     "acceptTerms": "L'utilisation du service vaut acceptation des",
     "close": "Fermer",
     "created": {
-      "burnInfo": "lisible une seule fois",
+      "burnInfo": "consultable une seule fois",
       "copy": "Copier",
       "copySuccess": "Lien copié",
-      "expiryOn": "Expiration le",
+      "expiresOn": "Expire le",
       "newShare": "Nouveau message",
       "title": "Contenu disponible sur :"
     },
     "decrypted": {
-      "deleted": "Lisible dans cet onglet pendant",
-      "deletedIn": "Supprimé dans",
-      "info": "Chiffré de bout en bout, via"
+      "expiresIn": "Expire dans",
+      "info": "Chiffré de bout en bout, via",
+      "readableFor": "Lisible sur cette page pendant"
     },
     "error": "Problème technique",
     "footer": {
