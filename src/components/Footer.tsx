@@ -13,13 +13,15 @@ function Footer() {
 
   return (
     <div className={styles.footer}>
-      <a
-        href={link}
-        rel="noopener noreferrer nofollow"
-        target="_blank"
-      >
-        {`${strings.footer.pictureBy} ${author} - ${location}`}
-      </a>
+      <div>
+        <a
+          href={link}
+          rel="noopener noreferrer nofollow"
+          target="_blank"
+        >
+          {`${strings.footer.pictureBy} ${author} - ${location}`}
+        </a>
+      </div>
       {showHome && <Link to="/" className={styles.home}><HomeIcon /></Link>}
       <div>
         <Link to={pages.terms.path}>{strings.terms}</Link>

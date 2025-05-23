@@ -13,6 +13,16 @@
   color: white;
 }
 
+@media (min-width: 1020.02px) {
+  .footer > :first-child, .footer > :last-child {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+  .footer > :last-child {
+    text-align: right;
+  }
+}
+
 @media (max-width: 1020px) {
   .footer {
     flex-direction: column;
