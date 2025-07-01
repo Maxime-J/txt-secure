@@ -8,103 +8,135 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/root'
+import { Route as newRouteImport } from './routes/new'
+import { Route as serverRouteImport } from './routes/_server'
+import { Route as viewRouteImport } from './routes/view'
+import { Route as indexRouteImport } from './routes/index'
+import { Route as serverTermsRouteImport } from './routes/_server/terms'
+import { Route as serverAboutRouteImport } from './routes/_server/about'
 
-import { Route as rootRoute } from './routes/root'
-import { Route as newImport } from './routes/new'
-import { Route as serverImport } from './routes/_server'
-import { Route as viewImport } from './routes/view'
-import { Route as indexImport } from './routes/index'
-import { Route as serverTermsImport } from './routes/_server/terms'
-import { Route as serverAboutImport } from './routes/_server/about'
-
-// Create/Update Routes
-
-const newRoute = newImport.update({
+const newRoute = newRouteImport.update({
   id: '/nouveau-lien',
   path: '/nouveau-lien',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const serverRoute = serverImport.update({
+const serverRoute = serverRouteImport.update({
   id: '/_server',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const viewRoute = viewImport.update({
+const viewRoute = viewRouteImport.update({
   id: '/$shareId',
   path: '/$shareId',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const indexRoute = indexImport.update({
+const indexRoute = indexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const serverTermsRoute = serverTermsImport.update({
+const serverTermsRoute = serverTermsRouteImport.update({
   id: '/conditions',
   path: '/conditions',
   getParentRoute: () => serverRoute,
 } as any)
-
-const serverAboutRoute = serverAboutImport.update({
+const serverAboutRoute = serverAboutRouteImport.update({
   id: '/a-propos',
   path: '/a-propos',
   getParentRoute: () => serverRoute,
 } as any)
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  '/': typeof indexRoute
+  '/$shareId': typeof viewRoute
+  '/nouveau-lien': typeof newRoute
+  '/a-propos': typeof serverAboutRoute
+  '/conditions': typeof serverTermsRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof indexRoute
+  '/$shareId': typeof viewRoute
+  '/nouveau-lien': typeof newRoute
+  '/a-propos': typeof serverAboutRoute
+  '/conditions': typeof serverTermsRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/': typeof indexRoute
+  '/$shareId': typeof viewRoute
+  '/_server': typeof serverRouteWithChildren
+  '/nouveau-lien': typeof newRoute
+  '/_server/a-propos': typeof serverAboutRoute
+  '/_server/conditions': typeof serverTermsRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/$shareId' | '/nouveau-lien' | '/a-propos' | '/conditions'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/$shareId' | '/nouveau-lien' | '/a-propos' | '/conditions'
+  id:
+    | '__root__'
+    | '/'
+    | '/$shareId'
+    | '/_server'
+    | '/nouveau-lien'
+    | '/_server/a-propos'
+    | '/_server/conditions'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  indexRoute: typeof indexRoute
+  viewRoute: typeof viewRoute
+  serverRoute: typeof serverRouteWithChildren
+  newRoute: typeof newRoute
+}
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof indexImport
-      parentRoute: typeof rootRoute
-    }
-    '/$shareId': {
-      id: '/$shareId'
-      path: '/$shareId'
-      fullPath: '/$shareId'
-      preLoaderRoute: typeof viewImport
-      parentRoute: typeof rootRoute
+    '/nouveau-lien': {
+      id: '/nouveau-lien'
+      path: '/nouveau-lien'
+      fullPath: '/nouveau-lien'
+      preLoaderRoute: typeof newRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_server': {
       id: '/_server'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof serverImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof serverRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/nouveau-lien': {
-      id: '/nouveau-lien'
-      path: '/nouveau-lien'
-      fullPath: '/nouveau-lien'
-      preLoaderRoute: typeof newImport
-      parentRoute: typeof rootRoute
+    '/$shareId': {
+      id: '/$shareId'
+      path: '/$shareId'
+      fullPath: '/$shareId'
+      preLoaderRoute: typeof viewRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_server/a-propos': {
-      id: '/_server/a-propos'
-      path: '/a-propos'
-      fullPath: '/a-propos'
-      preLoaderRoute: typeof serverAboutImport
-      parentRoute: typeof serverImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof indexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_server/conditions': {
       id: '/_server/conditions'
       path: '/conditions'
       fullPath: '/conditions'
-      preLoaderRoute: typeof serverTermsImport
-      parentRoute: typeof serverImport
+      preLoaderRoute: typeof serverTermsRouteImport
+      parentRoute: typeof serverRoute
+    }
+    '/_server/a-propos': {
+      id: '/_server/a-propos'
+      path: '/a-propos'
+      fullPath: '/a-propos'
+      preLoaderRoute: typeof serverAboutRouteImport
+      parentRoute: typeof serverRoute
     }
   }
 }
-
-// Create and export the route tree
 
 interface serverRouteChildren {
   serverAboutRoute: typeof serverAboutRoute
@@ -119,110 +151,12 @@ const serverRouteChildren: serverRouteChildren = {
 const serverRouteWithChildren =
   serverRoute._addFileChildren(serverRouteChildren)
 
-export interface FileRoutesByFullPath {
-  '/': typeof indexRoute
-  '/$shareId': typeof viewRoute
-  '': typeof serverRouteWithChildren
-  '/nouveau-lien': typeof newRoute
-  '/a-propos': typeof serverAboutRoute
-  '/conditions': typeof serverTermsRoute
-}
-
-export interface FileRoutesByTo {
-  '/': typeof indexRoute
-  '/$shareId': typeof viewRoute
-  '': typeof serverRouteWithChildren
-  '/nouveau-lien': typeof newRoute
-  '/a-propos': typeof serverAboutRoute
-  '/conditions': typeof serverTermsRoute
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof indexRoute
-  '/$shareId': typeof viewRoute
-  '/_server': typeof serverRouteWithChildren
-  '/nouveau-lien': typeof newRoute
-  '/_server/a-propos': typeof serverAboutRoute
-  '/_server/conditions': typeof serverTermsRoute
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/$shareId'
-    | ''
-    | '/nouveau-lien'
-    | '/a-propos'
-    | '/conditions'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$shareId' | '' | '/nouveau-lien' | '/a-propos' | '/conditions'
-  id:
-    | '__root__'
-    | '/'
-    | '/$shareId'
-    | '/_server'
-    | '/nouveau-lien'
-    | '/_server/a-propos'
-    | '/_server/conditions'
-  fileRoutesById: FileRoutesById
-}
-
-export interface RootRouteChildren {
-  indexRoute: typeof indexRoute
-  viewRoute: typeof viewRoute
-  serverRoute: typeof serverRouteWithChildren
-  newRoute: typeof newRoute
-}
-
 const rootRouteChildren: RootRouteChildren = {
   indexRoute: indexRoute,
   viewRoute: viewRoute,
   serverRoute: serverRouteWithChildren,
   newRoute: newRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "root.tsx",
-      "children": [
-        "/",
-        "/$shareId",
-        "/_server",
-        "/nouveau-lien"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/$shareId": {
-      "filePath": "view.tsx"
-    },
-    "/_server": {
-      "filePath": "_server.tsx",
-      "children": [
-        "/_server/a-propos",
-        "/_server/conditions"
-      ]
-    },
-    "/nouveau-lien": {
-      "filePath": "new.tsx"
-    },
-    "/_server/a-propos": {
-      "filePath": "_server/about.ts",
-      "parent": "/_server"
-    },
-    "/_server/conditions": {
-      "filePath": "_server/terms.ts",
-      "parent": "/_server"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
