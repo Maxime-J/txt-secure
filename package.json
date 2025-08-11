@@ -27,6 +27,7 @@
     "@eslint/js": "^9.33.0",
     "@stylistic/eslint-plugin": "^5.2.3",
     "@tanstack/router-plugin": "^1.131.3",
+    "@tanstack/virtual-file-routes": "1.131.2",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",
