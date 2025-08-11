@@ -32,7 +32,7 @@ interface CryptoParams {
 }
 
 function Crypto({ key58, vector64, salt64 }: CryptoParams = <CryptoParams>{}) {
-  const key = (key58) ? base58.decode(key58) : getRandomBytes(32);
+  const key = (key58) ? base58.decode(key58) as Uint8Array<ArrayBuffer> : getRandomBytes(32);
   const vector = (vector64) ? base64.decode(vector64) : getRandomBytes(16);
   const salt = (salt64) ? base64.decode(salt64) : getRandomBytes(8);
 
@@ -78,7 +78,7 @@ function Crypto({ key58, vector64, salt64 }: CryptoParams = <CryptoParams>{}) {
     const encrypted = await crypto.subtle.encrypt({
       name: 'AES-GCM',
       iv: vector,
-    }, aesKey, zlibSync(textArray));
+    }, aesKey, zlibSync(textArray) as Uint8Array<ArrayBuffer>);
     return base64.encode(new Uint8Array(encrypted));
   }
 
