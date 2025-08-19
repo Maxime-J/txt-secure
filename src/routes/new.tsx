@@ -10,9 +10,9 @@ import { NewShareState } from 'types';
 // Virtual file route: path generated from routes.js
 export const Route = createFileRoute('/nouveau-lien')({
   component: NewShare,
-  beforeLoad: () => ({
+  staticData: {
     title: pages.newLink.title,
-  }),
+  },
 });
 
 function NewShare() {

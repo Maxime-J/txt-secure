@@ -9,7 +9,7 @@ import styles from './Footer.module.css';
 
 function Footer() {
   const { location, author, link } = useLoaderData({ from: '__root__' });
-  const { context: { showHome } } = useRouterMatches().slice(-1)[0];
+  const { staticData: { showHome } } = useRouterMatches().slice(-1)[0];
 
   return (
     <div className={styles.footer}>

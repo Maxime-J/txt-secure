@@ -14,8 +14,8 @@ import styles from './view.module.css';
 // Virtual file route: path generated from routes.js
 export const Route = createFileRoute('/$shareId')({
   component: ViewShare,
-  loader: ({ context: { queryClient }, params }) => {
-    return queryClient.ensureQueryData(getShareQuery(params.shareId));
+  loader: ({ context: { queryClient }, params: { shareId } }) => {
+    return queryClient.ensureQueryData(getShareQuery(shareId));
   },
   shouldReload: false,
   gcTime: 0,

@@ -5,8 +5,8 @@ import { getContentQuery } from 'queries';
 
 export const Route = createFileRoute('/_server')({
   component: FromServer,
-  loader: ({ context: { queryClient }, location }) => {
-    return queryClient.ensureQueryData(getContentQuery(location.pathname));
+  loader: ({ context: { queryClient }, location: { pathname } }) => {
+    return queryClient.ensureQueryData(getContentQuery(pathname));
   },
   gcTime: 0,
 });

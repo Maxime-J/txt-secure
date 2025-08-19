@@ -10,9 +10,9 @@ import styles from './index.module.css';
 
 export const Route = createFileRoute('/')({
   component: Home,
-  beforeLoad: () => ({
+  staticData: {
     title: pages.home.title,
-  }),
+  },
 });
 
 function Home() {

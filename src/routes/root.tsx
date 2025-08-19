@@ -15,13 +15,9 @@ import '../styles/global.css';
 import muiTheme from '../styles/mui';
 import styles from './root.module.css';
 
-interface RouterContext {
-  queryClient: QueryClient,
-  showHome?: boolean,
-  title?: string,
-}
-
-export const Route = createRootRouteWithContext<RouterContext>()({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient
+}>()({
   component: RootComponent,
   loader: ({ context: { queryClient }}) => {
     return queryClient.ensureQueryData(backgroundQuery);
@@ -32,7 +28,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 function LocationEffects() {
   const matches = useRouterMatches();
-  const { pathname, context: { title } } = matches.slice(-1)[0];
+  const { pathname, staticData: { title } } = matches.slice(-1)[0];
 
   useEffect(() => {
     let newTitle = title ?? '';
@@ -43,7 +39,7 @@ function LocationEffects() {
   }, [title]);
 
   useEffect(() => {
-    const loadPromises = matches.map((match) => match.loadPromise);
+    const loadPromises = matches.map((match) => match._nonReactive.loadPromise);
 
     Promise.allSettled(loadPromises).then(() => {
       const root = document.getElementById('root')!;
