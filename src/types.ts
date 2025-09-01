@@ -14,8 +14,7 @@ export interface NewShareState {
 export interface ShareCreationRequest {
   encrypted: string,
   vector: string,
-  salt: string,
-  with_password: boolean,
+  salt?: string,
   validity: string,
   burn: boolean,
 }
@@ -30,8 +29,7 @@ export interface ShareCreationResponse {
 export interface ShareData {
   encrypted: string,
   vector: string,
-  salt: string,
-  with_password: boolean,
+  salt?: string,
   /** Unix timestamp in seconds */
   expirated_at: number,
   burn: boolean,

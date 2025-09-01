@@ -49,14 +49,15 @@ function ShareForm({ onCreated }: ShareFormProps) {
 
   const create = async () => {
     const { encrypt, params: cryptoParams } = Crypto();
-    const encrypted = await encrypt(content, passwordEnabled ? passwordRef.current!.value : '');
+
+    const password = (passwordEnabled) ? passwordRef.current!.value : '';
+    const encrypted = await encrypt(content, password);
 
     try {
       const { id, expirated_at } = await mutation.mutateAsync({
         encrypted,
         vector: cryptoParams.vector64,
-        salt: cryptoParams.salt64,
-        with_password: passwordEnabled && passwordRef.current!.value !== '',
+        salt: (password) ? cryptoParams.salt64 : undefined,
         validity: periodRef.current!.value,
         burn: burnRef.current!.checked,
       });

@@ -46,13 +46,13 @@ function ViewShare() {
   }, []);
 
   useEffect(() => {
-    if (notFound || share.with_password && password === '') return;
+    if (notFound || share.salt && password === '') return;
     (async () => {
       try {
         const decrypted = await crypto!.decrypt(share.encrypted, password);
         setContent(decrypted);
       } catch {
-        if (!share.with_password) setNotFound(true);
+        if (!share.salt) setNotFound(true);
       }
     })();
   }, [password]);
@@ -74,7 +74,7 @@ function ViewShare() {
   const render = () => {
     if (notFound) return <strong className={styles.invalid}>{strings.linkExpiredOrInvalid}</strong>;
     if (content) return <DecryptedShare content={content} expiratedAt={share.expirated_at} burn={share.burn} />;
-    if (share.with_password) return <PasswordCheck onChange={onPasswordChange} />;
+    if (share.salt) return <PasswordCheck onChange={onPasswordChange} />;
   };
 
   return (
