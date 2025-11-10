@@ -37,11 +37,7 @@ function AcceptTerms({ children }: PropsWithChildren) {
         <div>{`${strings.acceptTerms} `}<a onClick={openTerms} className={styles.link}>{strings.terms}</a></div>
         <div className={styles.child}>{children}</div>
       </Alert>
-      <Dialog
-        open={termsOpened}
-        onClose={closeTerms}
-        scroll="body"
-      >
+      <Dialog open={termsOpened} onClose={closeTerms}>
         {query.data
           ? <>
               <DialogContent className="server-content" dangerouslySetInnerHTML={{ __html: query.data }} />

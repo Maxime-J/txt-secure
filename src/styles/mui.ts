@@ -12,6 +12,13 @@ const muiTheme = createTheme({
         },
       },
     },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          overflowY: 'visible',
+        },
+      },
+    },
     MuiInput: {
       defaultProps: {
         disableUnderline: true,
