@@ -17,9 +17,7 @@ export default [
       react,
     },
     languageOptions: {
-      globals: {
-        ...globals.browser,
-      },
+      globals: globals.browser,
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
