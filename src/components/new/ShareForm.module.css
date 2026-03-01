@@ -24,8 +24,10 @@
   outline: none;
 }
 
-.counter {
+.limit {
+  display: none;
   text-align: right;
+  opacity: .5;
 }
 
 .settings {
