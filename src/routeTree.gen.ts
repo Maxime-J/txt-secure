@@ -103,7 +103,7 @@ declare module '@tanstack/react-router' {
     '/_server': {
       id: '/_server'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof serverRouteImport
       parentRoute: typeof rootRouteImport
     }
