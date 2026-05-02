@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint src"
+    "lint": "biome lint src"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -23,18 +23,13 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@eslint/js": "9.39.3",
-    "@stylistic/eslint-plugin": "5.9.0",
+    "@biomejs/biome": "2.4.14",
     "@tanstack/router-plugin": "1.164.0",
     "@tanstack/virtual-file-routes": "1.161.4",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.4",
-    "eslint": "9.39.3",
-    "eslint-plugin-react": "7.37.5",
-    "globals": "17.4.0",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.56.1",
     "vite": "7.3.1"
   },
   "packageManager": "yarn@4.12.0"
