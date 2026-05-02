@@ -6,7 +6,7 @@ import { ThemeProvider } from '@mui/material/styles';
 
 import Background from 'components/Background';
 import Footer from 'components/Footer';
-import Error from 'components/Error';
+import ErrorBanner from 'components/ErrorBanner';
 import useRouterMatches from 'utils/useRouterMatches';
 import { backgroundQuery } from 'queries';
 import { pages } from 'locale.json';
@@ -23,7 +23,7 @@ export const Route = createRootRouteWithContext<{
     return queryClient.ensureQueryData(backgroundQuery);
   },
   staleTime: Infinity,
-  errorComponent: Error,
+  errorComponent: ErrorBanner,
 });
 
 function LocationEffects() {
