@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import { inputBaseClasses } from '@mui/material/InputBase';
 
 const muiTheme = createTheme({
   typography: {
@@ -26,14 +27,14 @@ const muiTheme = createTheme({
       styleOverrides: {
         root: {
           width: '100%',
-        },
-        inputAdornedEnd: {
-          minHeight: 20,
-          borderRadius: 5,
-          borderWidth: 1,
-          borderStyle: 'solid',
-          borderColor: '#e0e0e0',
-          padding: 10,
+          [`&.${inputBaseClasses.adornedEnd} > .${inputBaseClasses.input}`]: {
+            minHeight: 20,
+            borderRadius: 5,
+            borderWidth: 1,
+            borderStyle: 'solid',
+            borderColor: '#e0e0e0',
+            padding: 10,
+          },
         },
       },
     },

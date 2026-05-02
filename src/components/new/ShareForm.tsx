@@ -120,7 +120,7 @@ function ShareForm({ onCreated }: ShareFormProps) {
           <div>
             <div>
               <span className={styles.label}>{strings.form.burn}</span>
-              <Switch inputRef={burnRef} />
+              <Switch slotProps={{ input: { ref: burnRef } }} />
             </div>
             <div>
               <span className={styles.label}>{strings.form.password}</span>
