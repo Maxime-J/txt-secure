@@ -6,7 +6,7 @@ function useRouterMatches() {
   });
 
   const router = useRouter();
-  return router.__store.state.matches;
+  return router.stores.matches.get();
 }
 
 export default useRouterMatches;

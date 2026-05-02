@@ -9,6 +9,7 @@ export const Route = createFileRoute('/_server')({
     return queryClient.ensureQueryData(getContentQuery(pathname));
   },
   gcTime: 0,
+  shouldReload: true,
 });
 
 function FromServer() {
