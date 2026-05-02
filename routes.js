@@ -14,5 +14,7 @@ export const routes = rootRoute('root.tsx', [
     route(pages.about.path, '_server/about.ts'),
     route(pages.terms.path, '_server/terms.ts'),
   ]),
-  route('/$shareId', 'view.tsx'),
+  route('/m', [
+    route('/$shareId', 'view.tsx'),
+  ]),
 ]);

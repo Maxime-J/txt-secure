@@ -12,7 +12,7 @@ import { strings } from 'locale.json';
 import styles from './view.module.css';
 
 // Virtual file route: path generated from routes.js
-export const Route = createFileRoute('/$shareId')({
+export const Route = createFileRoute('/m/$shareId')({
   component: ViewShare,
   loader: ({ context: { queryClient }, params: { shareId } }) => {
     return queryClient.ensureQueryData(getShareQuery(shareId));
@@ -27,7 +27,7 @@ const PasswordCheck = memo<typeof PasswordInput>(({ onChange }) => (
 PasswordCheck.displayName = 'PasswordCheck';
 
 function ViewShare() {
-  const share = useLoaderData({ from: '/$shareId' });
+  const share = useLoaderData({ from: '/m/$shareId' });
   const { hash } = useLocation();
 
   const [notFound, setNotFound] = useState(!share);

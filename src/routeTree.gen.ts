@@ -11,8 +11,8 @@
 import { Route as rootRouteImport } from './routes/root'
 import { Route as newRouteImport } from './routes/new'
 import { Route as serverRouteImport } from './routes/_server'
-import { Route as viewRouteImport } from './routes/view'
 import { Route as indexRouteImport } from './routes/index'
+import { Route as viewRouteImport } from './routes/view'
 import { Route as serverTermsRouteImport } from './routes/_server/terms'
 import { Route as serverAboutRouteImport } from './routes/_server/about'
 
@@ -25,14 +25,14 @@ const serverRoute = serverRouteImport.update({
   id: '/_server',
   getParentRoute: () => rootRouteImport,
 } as any)
-const viewRoute = viewRouteImport.update({
-  id: '/$shareId',
-  path: '/$shareId',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const indexRoute = indexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const viewRoute = viewRouteImport.update({
+  id: '/m/$shareId',
+  path: '/m/$shareId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const serverTermsRoute = serverTermsRouteImport.update({
@@ -48,47 +48,47 @@ const serverAboutRoute = serverAboutRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof indexRoute
-  '/$shareId': typeof viewRoute
   '/nouveau-lien': typeof newRoute
   '/a-propos': typeof serverAboutRoute
   '/conditions': typeof serverTermsRoute
+  '/m/$shareId': typeof viewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof indexRoute
-  '/$shareId': typeof viewRoute
   '/nouveau-lien': typeof newRoute
   '/a-propos': typeof serverAboutRoute
   '/conditions': typeof serverTermsRoute
+  '/m/$shareId': typeof viewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof indexRoute
-  '/$shareId': typeof viewRoute
   '/_server': typeof serverRouteWithChildren
   '/nouveau-lien': typeof newRoute
   '/_server/a-propos': typeof serverAboutRoute
   '/_server/conditions': typeof serverTermsRoute
+  '/m/$shareId': typeof viewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$shareId' | '/nouveau-lien' | '/a-propos' | '/conditions'
+  fullPaths: '/' | '/nouveau-lien' | '/a-propos' | '/conditions' | '/m/$shareId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$shareId' | '/nouveau-lien' | '/a-propos' | '/conditions'
+  to: '/' | '/nouveau-lien' | '/a-propos' | '/conditions' | '/m/$shareId'
   id:
     | '__root__'
     | '/'
-    | '/$shareId'
     | '/_server'
     | '/nouveau-lien'
     | '/_server/a-propos'
     | '/_server/conditions'
+    | '/m/$shareId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   indexRoute: typeof indexRoute
-  viewRoute: typeof viewRoute
   serverRoute: typeof serverRouteWithChildren
   newRoute: typeof newRoute
+  viewRoute: typeof viewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -107,18 +107,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof serverRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/$shareId': {
-      id: '/$shareId'
-      path: '/$shareId'
-      fullPath: '/$shareId'
-      preLoaderRoute: typeof viewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof indexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/m/$shareId': {
+      id: '/m/$shareId'
+      path: '/m/$shareId'
+      fullPath: '/m/$shareId'
+      preLoaderRoute: typeof viewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_server/conditions': {
@@ -153,9 +153,9 @@ const serverRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   indexRoute: indexRoute,
-  viewRoute: viewRoute,
   serverRoute: serverRouteWithChildren,
   newRoute: newRoute,
+  viewRoute: viewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

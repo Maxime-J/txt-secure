@@ -63,7 +63,7 @@ function ShareForm({ onCreated }: ShareFormProps) {
         burn: burnRef.current!.checked,
       });
 
-      const link = `${location.origin}/${id}#${cryptoParams.key58}`;
+      const link = `${location.origin}/m/${id}#${cryptoParams.key58}`;
 
       onCreated({
         link,
