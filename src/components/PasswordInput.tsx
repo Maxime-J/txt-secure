@@ -1,4 +1,4 @@
-import { ChangeEventHandler, Ref, useState } from 'react';
+import { type ChangeEventHandler, type Ref, useState } from 'react';
 
 import { IconButton, Input, InputAdornment } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/VisibilityOutlined';

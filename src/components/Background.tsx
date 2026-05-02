@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useState } from 'react';
+import { type CSSProperties, useEffect, useState } from 'react';
 import { useLoaderData } from '@tanstack/react-router';
 
 import styles from './Background.module.css';

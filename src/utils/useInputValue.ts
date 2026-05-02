@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useCallback, useState } from 'react';
+import { type ChangeEventHandler, useCallback, useState } from 'react';
 
 type ChangeHandler = ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 

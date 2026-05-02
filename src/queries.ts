@@ -2,7 +2,7 @@ import { queryOptions } from '@tanstack/react-query';
 
 import { fetchApi } from 'utils/api';
 
-import {
+import type {
   BackgroundInfos,
   ShareCreationRequest,
   ShareCreationResponse,

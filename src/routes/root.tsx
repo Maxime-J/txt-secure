@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
-import { QueryClient } from '@tanstack/react-query';
+import type { QueryClient } from '@tanstack/react-query';
 
 import { ThemeProvider } from '@mui/material/styles';
 

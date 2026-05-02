@@ -10,7 +10,7 @@ import { strings } from 'locale.json';
 
 import styles from './CreatedShare.module.css';
 
-import { NewShareState } from 'types';
+import type { NewShareState } from 'types';
 
 interface CreatedShareProps {
   share: NewShareState,

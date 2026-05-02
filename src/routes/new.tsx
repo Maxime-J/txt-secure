@@ -5,7 +5,7 @@ import CreatedShare from 'components/new/CreatedShare';
 import ShareForm from 'components/new/ShareForm';
 import { pages } from 'locale.json';
 
-import { NewShareState } from 'types';
+import type { NewShareState } from 'types';
 
 // Virtual file route: path generated from routes.js
 export const Route = createFileRoute('/nouveau-lien')({

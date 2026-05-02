@@ -21,7 +21,7 @@ import { strings } from 'locale.json';
 
 import styles from './ShareForm.module.css';
 
-import { NewShareState } from 'types';
+import type { NewShareState } from 'types';
 
 const MAX_LENGTH = 10000;
 

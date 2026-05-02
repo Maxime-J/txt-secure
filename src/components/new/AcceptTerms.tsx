@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from 'react';
+import { type PropsWithChildren, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import {
